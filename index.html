@@ -11,6 +11,20 @@
 			color: #FFFFFF;
 		}
 
+		#rainContainer {
+			height: 100%;
+			width: 100%;
+			background: linear-gradient(to bottom,rgb(14, 51, 117),rgb(145, 170, 221));
+			overflow: hidden;
+		}
+
+		.rainDrop {
+			width: 1px;
+			height: 50px;
+			background: linear-gradient(rgba(0,0,0,0),white);
+			position: fixed;
+		}
+
 		#msg {
 			width: 50%;
 			font-size: 32;
@@ -24,10 +38,77 @@
 	</head>
 <body>
 
-  <div id="msg">Hello world!</div>
-
+  <!-- <div id="msg">Hello world!</div> -->
+  <div id="rainContainer"></div>
 	<script>
 
+var drops = [];
+
+		function createRainDrop(){
+
+				var canvas = document.getElementById("rainContainer");
+
+				var left = Math.floor( Math.random() * 1300 );
+				var top = Math.floor( Math.random() * 400 )-500;
+
+				drops.push({"left": left, "top": top});
+				console.log("born @ "+drops.length);
+
+				var newDrop = document.createElement("DIV");
+				newDrop.className = "rainDrop";
+				newDrop.style.left = left+"px";
+				newDrop.style.top = top+"px";
+
+				canvas.appendChild(newDrop);
+		}
+
+		function startShower(){
+
+			var dead = [];
+
+			var droplets = document.getElementsByClassName("rainDrop");
+
+			// apply gravity to drops
+			for(var i=0; i<droplets.length; i++){
+
+				var top = drops[i].top++;
+
+				if(top<800)
+					droplets[i].style.top = top + "px";
+				else {
+
+					// mark dead
+					dead.push(i);
+					console.log("died "+i);
+				}
+			}
+
+			// remove dead drops
+			for(var i=0; i<dead.length; i++){
+
+				// remove from DOM
+				droplets[dead[i]].parentNode.removeChild(droplets[dead[i]]);
+
+				// remove from array
+				drops.splice(dead[i], 1);
+				console.log("removed "+dead[i]);
+
+				// create new
+				createRainDrop();
+			}
+		}
+
+		window.onload = function(){
+
+			var population = 400;
+			
+			for(var i=0; i<population; i++){
+
+				createRainDrop();
+			}
+
+			setInterval(startShower,1000/100);
+		};
 	</script>
 </body>
 </html>
