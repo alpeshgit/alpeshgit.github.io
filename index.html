@@ -26,6 +26,32 @@
 			position: fixed;
 		}
 
+		@-webkit-keyframes ripple {
+			0% {
+				width: 1px;
+				height: 80px;
+				background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.55));
+			}
+			1% {
+				width: 1px;
+				height: 1px;
+				background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.55));
+			}
+			100% {
+				width: 80px;
+				height: 1px;
+				background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.55));
+			}
+		}
+
+		.rainDropFallen {
+			position: fixed;
+			animation-name: ripple;
+			animation-duration: 4s;
+			-webkit-animation-name: ripple;
+			-webkit-animation-duration: 4s;
+		}
+
 		#msg {
 			width: 50%;
 			font-size: 32;
@@ -45,22 +71,32 @@
   <div id="rainContainer"></div>
 	<script>
 
-var drops = [];
+		var drops = [];
 
 		function createRainDrop(){
 
 				var canvas = document.getElementById("rainContainer");
 
 				var left = Math.floor( Math.random() * 1300 );
-				var top = Math.floor( Math.random() * 400 )-500;
+				var bottom = Math.floor( Math.random() * 720 )+720;
+				var vel = Math.floor( Math.random() * 2 )+2;
 
-				drops.push({"left": left, "top": top});
-				console.log("born @ "+drops.length);
+				drops.push({"left": left, "bottom": bottom, "vel": vel});
+				console.log("born @ "+drops.length+" >> "+vel);
 
 				var newDrop = document.createElement("DIV");
 				newDrop.className = "rainDrop";
 				newDrop.style.left = left+"px";
-				newDrop.style.top = top+"px";
+				newDrop.style.bottom = bottom+"px";
+
+			/*** Dumb Garbage Collector*/
+				var deadDrops = document.getElementsByClassName("rainDropFallen");
+
+				for(var i=0; deadDrops.length>100 && i<deadDrops.length; i++){
+
+					deadDrops[i].parentNode.removeChild(deadDrops[i]);
+					console.log("removed ");
+				}
 
 				canvas.appendChild(newDrop);
 		}
@@ -74,44 +110,43 @@ var drops = [];
 			// apply gravity to drops
 			for(var i=0; i<droplets.length; i++){
 
-				var top = drops[i].top++;
+				var bottom = drops[i].bottom-drops[i].vel;
+				drops[i].bottom = bottom;
 
-				if(top<800)
-					droplets[i].style.top = top + "px";
+				if( bottom>180 )
+					droplets[i].style.bottom = bottom + "px";
 				else {
 
-					// mark dead
-					dead.push(i);
 					console.log("died "+i);
+
+					// create new
+					createRainDrop();
+					drops.splice(i, 1);
+					droplets[i].className = "rainDropFallen";
 				}
 			}
 
-			// remove dead drops
-			for(var i=0; i<dead.length; i++){
-
-				// remove from DOM
-				droplets[dead[i]].parentNode.removeChild(droplets[dead[i]]);
-
-				// remove from array
-				drops.splice(dead[i], 1);
-				console.log("removed "+dead[i]);
-
-				// create new
-				createRainDrop();
-			}
 		}
 
 		window.onload = function(){
 
-			var population = 400;
+			var population = 100;
 			
 			for(var i=0; i<population; i++){
 
 				createRainDrop();
 			}
 
-			setInterval(startShower,1000/100);
+			var cron = setInterval(startShower,1000/600);
+			
+			/* **Breakpoint
+				setTimeout(
+					function(){
+						clearInterval(cron);
+					},5000);
+			*/
 		};
+
 	</script>
 </body>
 </html>
