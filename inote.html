@@ -1,0 +1,142 @@
+<html >
+	<title>iNotes</title>
+	<style>
+	
+		::selection{
+			background: black;
+		}
+		
+		body{
+			color: white;
+			background-color: rgb(29, 19, 23);
+			font-family: sans-serif;
+		}
+		
+		#notepad{
+			width: 90%;
+			height: 90%;
+			margin-top: 40px;
+			padding-left: 50px;
+			padding-top: 10px;
+			outline: 0px solid transparent;
+			color: rgb(226,236,232);
+		}
+		
+		#configPanel{
+			width: 70px;
+			height: 50%;
+			position: fixed;
+			right: 0px;
+			top: 100px;
+			background-color: rgb(0, 0, 0);
+		}
+		
+		#configPanel div{
+			width: 50px;
+			height: 50px;
+			margin: 10px;
+		}
+		
+		#bg1{
+			/* Charcoal */
+			background-color: rgb(29, 19, 23);
+		}
+
+		#bg2{
+			/* Ubuntu terminal */
+			background-color: rgb(0, 3, 75);
+		}
+		
+		#bg3{
+			/* Lovely Red */
+			background-color: rgb(229, 28, 28);
+		}
+
+		#bg4{
+			/* Pinky smudge */
+			background-color: rgb(235, 36, 99);
+		}
+
+		</style>
+	<body >
+		<div id="configPanel">
+			<div id="bg1" onclick="setBackground(event)"></div>
+			<div id="bg2" onclick="setBackground(event)"></div>
+			<div id="bg3" onclick="setBackground(event)"></div>
+			<div id="bg4" onclick="setBackground(event)"></div>
+		</div>
+		<div id="notepad" contenteditable></div>
+		
+		<script type="text/javascript">
+		
+			function getInvert(color){
+			
+				color = color.replace("rgb","");
+				color = color.replace(" ","");
+				color = color.replace("(","");
+				color = color.replace(")","");
+				
+				color = color.split(",");
+
+				//console.log('RR is'+parseInt(color[0]));
+				//console.log('GG is'+parseInt(color[1]));
+				//console.log('BB is'+parseInt(color[2]));
+				
+				var invColor = "rgb("+(255-parseInt(color[0]))+","+(255-parseInt(color[1]))+","+(255-parseInt(color[2]))+")"
+				
+				console.log('Invert is '+invColor);
+				
+				return invColor;
+			}
+			
+			function setBackground(event){
+			
+				//console.log('event is'+JSON.stringify());
+				
+				var bgColor = getComputedStyle(event.target).backgroundColor;				
+				document.body.style.background = bgColor;
+				
+				console.log('bg is'+JSON.stringify(bgColor));
+				
+				document.getElementById("notepad").style.color = getInvert(bgColor);
+				
+			}
+		
+			function save(){
+	
+				if (typeof(Storage) !== "undefined") {
+
+					// Code for localStorage/sessionStorage.
+					// Store
+					var text = document.getElementById("notepad").innerHTML;
+					localStorage.setItem("note", text);
+
+				} else {
+					// Sorry! No Web Storage support..
+				}
+			}
+
+			function load(){
+	
+				if (typeof(Storage) !== "undefined") {
+
+					// Code for localStorage/sessionStorage.
+
+					// Retrieve
+					document.getElementById("notepad").innerHTML = localStorage.getItem("note");
+
+				} else {
+					// Sorry! No Web Storage support..
+				}
+			}
+
+			window.onload = function(){
+			
+				load();
+				
+				setInterval(save,2000);
+			};
+
+		</script>
+	</body>
+</html>
