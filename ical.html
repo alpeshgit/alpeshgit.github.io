@@ -1,0 +1,524 @@
+<html>
+	<head>
+		<title>
+			iCalendar
+		</title>
+		<style>
+			* {
+				box-sizing: border-box;
+				}
+
+			body {
+				padding-top: 5%;
+				padding-bottom: 5%;
+				background: linear-gradient(to bottom right,rgba(84, 73, 160,1.0),rgba(255,0,0,1.0));
+				}
+
+
+			#iCalContainer {
+				width: 80%;
+				height: 94%;
+				min-width: 320px;
+				min-height: 420px;
+				margin: auto;
+			/*	background: linear-gradient(to bottom right,#58A2F3,#aa0000);	*/
+				background: linear-gradient(to bottom right,rgba(88,162,243,0.4),rgba(255,0,0,0.4));
+				box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.25);
+				}
+
+			#iCalTitleContainer{
+				width: 100%;
+				height: 14%;
+				background-color: rgba(0,0,0,0.0);
+				color: white;
+				font-size: 300%;
+				font-family: sans-serif;
+				text-align: center;
+			}
+
+			#iCalYearTitleContainer {
+				width: 63%;
+				float: left;
+			}
+
+			#iCalMonthTitleContainer	 {
+				float: left;
+				text-align: right;
+			}
+
+			.iNavCtrlContainer:hover div {
+				opacity: 1;
+			}
+
+			#iCalYearTitle {
+				padding-top: 5px;
+				float: right;
+				width: 150px;
+			}
+
+			#iCalMonthTitle {
+				width: 237px;
+				float: right;
+				text-align: center;
+			}
+
+			#iCalDayContainer {
+				width: 100%;
+				height: 10%;
+				background-color: rgba(0,0,0,0.0);
+				display: flex;
+				flex-wrap: wrap;
+
+				}
+
+			#iCalDateContainer {
+				width: 100%;
+				height: 86%;
+				background-color: rgba(0,0,0,0.0);
+				}
+
+			.iCalHeadCell {
+				float: left;
+				width: 14.285%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.25);
+				border: 1px solid rgba(255,255,255,0.6);
+				border-collapse: collapse;
+				font-family: sans-serif;
+				font-size: x-large;
+				font-variant: small-caps;
+				color: white;
+				text-align: center;
+				padding: 10px;
+				}
+
+			.iCalCell {
+				float: left;
+				width: 14.285%;
+				height: 14.8%;
+				background-color: rgba(255,255,255,0.15);
+				border: 1px solid rgba(255,255,255,0.6);
+				border-collapse: collapse;
+
+				color: white;
+				font-size: 300%;
+				font-family: sans-serif;
+				text-align: right;
+				padding-right: 4%;
+				}
+			
+			.iCalCell:hover {
+				background-color: rgba(0,0,0,0.15);
+				}
+
+			.iCalCellPrev {
+				background-color: rgba(255, 0, 0, 0.15);
+				color: rgba(255, 255, 255, 0.25);
+				}
+
+			.iCalCellNext {
+				background-color: rgba(255, 0, 0, 0.15);
+				color: rgba(255, 255, 255, 0.25);
+				}
+
+			.iCalCellToday {
+				background-color: rgba(255, 52, 52, 0.7);
+				border: 3px solid rgba(255,255,255,0.25);
+				color: darkred;
+				}
+
+			.iCalCellHoliday {
+			/*	background-color: rgba(202, 210, 255, 0.5);	*/
+				background-color: rgba(48, 48, 48, 0.5);
+			}
+
+			.iCalNavButton {
+				float: right;
+				margin-top: 6px;
+				width: 75px;
+				height: 50px;
+				color: rgba(255, 255, 255, 0.25);
+				opacity: 0;
+			}
+
+			.iCalNavButtonLeft {
+				background: url('images/navLeft.png') no-repeat 10px 0px;
+				background-size: 50px 50px;
+				}
+
+			.iCalNavButtonRight {
+				background: url('images/navRight.png') no-repeat 10px 0px;
+				background-size: 50px 50px;
+				}
+
+		</style>
+	</head>
+<body>
+
+	<div id="iCalContainer">
+		<div id="iCalTitleContainer">
+			<div id="iCalYearTitleContainer" class="iNavCtrlContainer">
+				<div class="iCalNavButton iCalNavButtonRight" onClick="navigateToNextYear()"></div>
+				<div id="iCalYearTitle">2017</div>
+				<div class="iCalNavButton iCalNavButtonLeft" onClick="navigateToPrevYear()"></div>
+			</div>
+			<div id="iCalMonthTitleContainer" class="iNavCtrlContainer">
+				<div class="iCalNavButton iCalNavButtonRight" onClick="navigateToNextMonth()"></div>
+				<div id="iCalMonthTitle">July</div>
+				<div class="iCalNavButton iCalNavButtonLeft" onClick="navigateToPrevMonth()"></div>
+			</div>
+		</div> 
+	
+		<div id="iCalDayContainer">
+			<div class="iCalHeadCell">
+				Sunday
+			</div>
+			<div class="iCalHeadCell">
+				Monday
+			</div>
+			<div class="iCalHeadCell">
+				Tuesday
+			</div>
+			<div class="iCalHeadCell">
+				Wednesday
+			</div>
+			<div class="iCalHeadCell">
+				Thursday
+			</div>
+			<div class="iCalHeadCell">
+				Friday
+			</div>
+			<div class="iCalHeadCell">
+				Saturday
+			</div>
+		</div> 
+		<div id="iCalDateContainer">
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+			<div class="iCalCell">
+			</div>
+		</div>
+	</div>
+	<script>
+
+		var mm, yy;
+
+		var holidayList = [
+					{name:"Republic Day", date:"26-1-2017"},
+					{name:"Chhatrapati Shivaji Jayanti", date:"19-2-2017"},
+					{name:"Shivratri", date:"24-2-2017"},
+					{name:"Holi", date:"13-3-2017"},
+					{name:"Gudi Padwa", date:"28-3-2017"},
+					{name:"Ram Navami", date:"4-4-2017"},
+					{name:"Mahavir Jayanti", date:"3-4-2017"},
+					{name:"Good Friday", date:"14-4-2017"},
+					{name:"Maharashtra Day", date:"1-5-2017"},
+					{name:"Buddha Purnima", date:"10-5-2017"},
+					{name:"Ramzan", date:"26-6-2017"},
+					{name:"Independence day", date:"15-8-2017"},
+					{name:"Parsi New Year", date:"17-8-2017"},
+					{name:"Ganesh Chaturthi", date:"25-8-2017"},
+					{name:"Bakri Id", date:"2-9-2017"},
+					{name:"Dussera", date:"30-9-2017"},
+					{name:"Moharram", date:"1-10-2017"},
+					{name:"Gandhi Jayanti", date:"2-10-2017"},
+					{name:"Diwali Amavasya Laxmi Pujan", date:"19-10-2017"},
+					{name:"Diwali", date:"20-10-2017"},
+					{name:"Guru Nanak Jayanti", date:"4-11-2017"},
+					{name:"Id E Milad", date:"1-12-2017"},
+					{name:"Christmas", date:"25-12-2017"}
+					];
+
+		function isLeapYear(year){
+
+			if( (year%4==0 && year%100!=0) || (year%400==0))
+				return true;
+			else
+				return false;
+
+		}
+
+		function isHoliday(day,month,year){
+
+			var date = day+"-"+(++month)+"-"+year;
+
+			for( var i=0; i<holidayList.length; i++){
+
+				if(holidayList[i].date == date)
+					return i;
+
+			}
+
+			return -1;
+		}
+
+		function getMonthName(month){
+
+			var names = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+			return (( month>=0 && month<12 )?names[month]:"");
+		}
+
+		function getDaysInPrevMonth(month,year){
+
+			console.log("<<<");
+
+			if(month==0){
+				year--;
+				month = 11;
+			} else
+				month--;
+			
+			return getDaysInMonth(month,year);
+		}
+
+		function getDaysInMonth(month,year){
+
+			var days = 0;
+			
+			if( (month==0) || (month==2) || (month==4) || (month==6) || (month==7) || (month==9) || (month==11) )
+				days = 31;
+			else if( (month==3) || (month==5) || (month==8) || (month==10))
+				days = 30;
+			else if(month == 1)
+				days = (isLeapYear(year)? 29: 28);
+
+			return days;
+		}
+
+		function navigateToNextMonth(){
+
+			mm = (mm+1)%12;
+
+			if(mm==0)
+				yy++;
+
+			renderCalendar(mm,yy);
+		}
+
+		function navigateToPrevMonth(){
+
+			if(mm==0){
+				yy--;
+				mm = 11;
+			} else
+				mm--;
+
+
+			renderCalendar(mm,yy);
+		}
+
+		function navigateToNextYear(){
+
+			yy++;
+
+			renderCalendar(mm,yy);
+		}
+
+		function navigateToPrevYear(){
+
+			yy--;
+
+			renderCalendar(mm,yy);
+		}
+
+		function renderCalendar(month,year){
+
+			console.log("baking calendar("+month+", "+year+")...");
+
+			var today = new Date().getDate();
+			var todayMonth = new Date().getMonth();
+			var todayYear = new Date().getFullYear();
+
+			var firstDay = new Date(year, month, 1).getDay();
+			var lastDay = getDaysInMonth(month, year)+firstDay;
+
+			var actualFirstDay = getDaysInPrevMonth(month, year)-firstDay+1;
+			var actualLastDay = getDaysInMonth((month+1)%12, year);
+
+			var dayList = document.getElementsByClassName("iCalCell");
+			console.log("got - "+dayList.length);
+			console.log("FF - "+firstDay);
+			console.log("LL - "+lastDay);
+
+			console.log("AFF - "+actualFirstDay);
+			console.log("ALL - "+actualLastDay);
+
+			document.getElementById("iCalMonthTitle").innerHTML = getMonthName(month);
+			document.getElementById("iCalYearTitle").innerHTML = year;
+
+			if( (dayList.length-lastDay) > 7){
+				console.log("adjust for "+month);
+
+				var excess = dayList.length-lastDay;
+				console.log("adjusting "+excess);
+
+				firstDay += 7;
+				lastDay += 7;
+
+				for( var i=0; i<firstDay; i++ ){
+					dayList[i].className = "iCalCell iCalCellPrev";
+					dayList[i].innerHTML = actualFirstDay-7+i;
+					dayList[i].title = "";
+				}
+
+				for( var i=firstDay; i<lastDay; i++ ){
+
+					var date = i-firstDay+1;
+
+					dayList[i].title = "";
+
+					if( (year==todayYear) && (month==todayMonth) && (date==today) )
+						dayList[i].className = "iCalCell iCalCellToday";
+					else {
+
+						var hh = isHoliday(date,month,year);
+						 if( hh>0 ){
+							dayList[i].className = "iCalCell iCalCellHoliday";
+							dayList[i].title= holidayList[hh].name;
+						} else if( (i%7)==0 || i==20 || i==34 )
+							dayList[i].className = "iCalCell iCalCellHoliday";
+						else
+							dayList[i].className = "iCalCell";
+					}
+					dayList[i].innerHTML = date;
+				}
+
+				for( var i=lastDay; i<dayList.length; i++ ){
+					dayList[i].className = "iCalCell iCalCellNext";
+					dayList[i].innerHTML = i-lastDay+1;
+					dayList[i].title = "";
+				}
+
+			} else {
+				for( var i=0; i<firstDay; i++ ){
+					dayList[i].className = "iCalCell iCalCellPrev";
+					dayList[i].innerHTML = actualFirstDay+i;
+					dayList[i].title = "";
+				}
+
+				for( var i=firstDay; i<lastDay; i++ ){
+					var date = i-firstDay+1;
+
+					dayList[i].title = "";
+
+					if( (year==todayYear) && (month==todayMonth) && (date==today) )
+						dayList[i].className = "iCalCell iCalCellToday";
+					else {
+
+						var hh = isHoliday(date,month,year);
+						 if( hh>0 ){
+							dayList[i].className = "iCalCell iCalCellHoliday";
+							dayList[i].title= holidayList[hh].name;
+						} else if( (i%7)==0 || i==13 || i==27 )
+							dayList[i].className = "iCalCell iCalCellHoliday";
+						else
+							dayList[i].className = "iCalCell";
+					}
+
+					dayList[i].innerHTML = date;
+				}
+
+				for( var i=lastDay; i<dayList.length; i++ ){
+					dayList[i].className = "iCalCell iCalCellNext";
+					dayList[i].innerHTML = i-lastDay+1;
+					dayList[i].title = "";
+				}
+			}
+
+
+		}
+
+		window.onload = function(){
+
+					var now = new Date();
+
+					mm = now.getMonth();
+					yy = now.getFullYear();
+
+					renderCalendar(mm,yy);
+				};
+		
+	</script>
+</body>
+</html>
