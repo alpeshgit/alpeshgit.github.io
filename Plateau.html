@@ -1,0 +1,234 @@
+<html>
+	<head>
+		<title>
+			Plateau
+		</title>
+
+
+	<style>
+
+	body{
+	
+		overflow: hidden;
+	}
+
+	#sky {
+		background-color: #000;
+		margin: -20px;
+		width: 110%;
+		height: 110%;
+		overflow: hidden;
+	}
+
+	.glowingBall {
+		width: 0px;
+		height: 0px;
+		border: 12px solid #FFF;
+		border-radius: 25px;
+		position: absolute;
+		left: 200px;
+		top: 120px;
+		box-shadow: 0px 0px 50px rgb(255,255,255);
+		transform: translate(-12px,-12px);
+		z-index: 5;
+	}
+
+	.glowingLine {
+		background-color: #F00;
+		width: 1px;
+		height: 0px;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	/*	box-shadow: 0px 0px 10px rgba(192,166,243,0.40);
+	*/	}
+
+	</style>
+	</head>
+<body>
+
+	<div id="sky"></div>
+
+	<script>
+
+	var pearls = [];
+
+		function createLine(x1,y1,x2,y2,color){
+		
+				var length = Math.round(Math.sqrt(Math.pow(y1-y2,2)+Math.pow(x2-x1,2)),3);
+				console.log("Length "+length);
+		
+				var slope = (y2-y1)/(x2-x1);
+				var angle = Math.atan(slope)*180/Math.PI - 90;
+				//console.log("Slope "+angle);
+				
+				if(x2 >= x1)
+					angle = (360+angle)%360;
+				else
+					angle = 180+angle;
+
+				var left = x1;
+				//console.log("Left "+left);
+				
+				var top = y1;
+				//console.log("Top "+top);
+				
+				var canvas = document.getElementById("sky");
+				var newLine = document.createElement("DIV");
+				newLine.className = "glowingLine";
+				//newLine.style. = ;
+				
+				if(color)
+					newLine.style.backgroundColor = color;
+				newLine.style.height = length+"px";
+				newLine.style.left = left+"px";
+				newLine.style.top = top+"px";
+				newLine.style.transformOrigin = "0px 0px";
+				newLine.style.transform = "rotateZ("+(angle)+"deg)";
+				canvas.appendChild(newLine);
+		}
+		
+		function createBall(){
+
+				var canvas = document.getElementById("sky");
+
+				var left = Math.floor( Math.random() * 1300 );
+				var top = Math.floor( Math.random() * 200 )+200;
+
+				var hlambda = Math.floor( Math.random() * 100 )+50;
+				var hlife = Math.floor( Math.random() * 600 )+300;
+				var vlambda = Math.floor( Math.random() * 100 )+50;
+				var vlife = Math.floor( Math.random() * 400 )+200;
+				
+				var newBall = document.createElement("DIV");
+				newBall.id = "ball"+pearls.length;
+				newBall.className = "glowingBall";
+				//newBall.style.WebkitAnimationDuration = twinkle+"s";
+				newBall.style.left = left+"px";
+				newBall.style.top = top+"px";
+				canvas.appendChild(newBall);
+
+				var pearl = {
+					"ox": left,
+					"oy": top,
+					"x": left,
+					"y": top,
+					"vh": vlambda,
+					"vk": 0,
+					"vl": vlife,
+					"hh": hlambda,
+					"hk": 0,
+					"hl": hlife,
+					"e": "ball"+pearls.length
+				};
+				
+				pearls.push(pearl);
+		}
+
+		function render(){
+		
+			var olines = 0;
+			var nlines = 0;
+			var lines = document.getElementsByClassName("glowingLine");
+				
+			// erase old lines
+			for(var i=0; i<lines.length; i++){
+				lines[i].style.display = "none";
+				lines[i].parentNode.removeChild(lines[i]);
+				olines++;
+			}
+				
+			// compute new position
+			for(var i=0; i<pearls.length; i++){
+
+				var e = document.getElementById(pearls[i].e);
+
+				// horizontal movement				
+				var hage = pearls[i].hk*2*Math.PI/pearls[i].hl;
+				var l = pearls[i].ox+(Math.sin(hage)*pearls[i].hh);
+				pearls[i].x = l;
+				pearls[i].hk = (pearls[i].hk+1)%pearls[i].hl;
+				e.style.left = l+"px";
+
+				// vertical movement				
+				var vage = pearls[i].vk*2*Math.PI/pearls[i].vl;
+				var t = pearls[i].oy+(Math.sin(vage)*pearls[i].vh);
+				pearls[i].y = t;
+				pearls[i].vk = (pearls[i].vk+1)%pearls[i].vl;
+				e.style.top = t+"px";
+								
+				//console.log("Age "+age+" > "+pearls[i].y);
+			}
+
+			// create lines
+			for(var i=0; i<pearls.length; i++){
+				
+				for(var j=0; j<pearls.length; j++){
+				
+					var x1 = pearls[i].x;
+					var y1 = pearls[i].y;
+					if(i!=j){
+					
+						var x2 = pearls[j].x;
+						var y2 = pearls[j].y;
+					
+						//console.log("Pts "+x1+","+y1+" "+x2+","+y2+" ");
+						var dt = Math.pow(y1-y2,2)+Math.pow(x2-x1,2);
+						
+						if(dt<0)
+							dt = -1*dt;
+							
+						nlines++;
+						
+						var d = Math.round(Math.sqrt(dt),2);
+						
+						if(d>720)
+							d; // Skip drawing the line
+						else if(d>640)
+							createLine(x1,y1,x2,y2,"rgba(255, 255, 0, 0.0)");
+						else if(d>560)
+							createLine(x1,y1,x2,y2,"rgba(255, 234, 0, 0.12)");
+						else if(d>480)
+							createLine(x1,y1,x2,y2,"rgba(255, 211, 0, 0.24)");
+						else if(d>400)
+							createLine(x1,y1,x2,y2,"rgba(255, 189, 0, 0.36)");
+						else if(d>320)
+							createLine(x1,y1,x2,y2,"rgba(255, 166, 0, 0.48)");
+						else if(d>240)
+							createLine(x1,y1,x2,y2,"rgba(255, 141, 0, 0.60)");
+						else if(d>160)
+							createLine(x1,y1,x2,y2,"rgba(255, 113, 0, 0.72)");
+						else if(d>80)
+							createLine(x1,y1,x2,y2,"rgba(255, 79, 0, 0.84)");
+						else
+							createLine(x1,y1,x2,y2,"rgba(255, 0, 0, 0.96)");
+
+					}
+				}
+			}
+			
+			console.log(olines+"/"+nlines);
+		}
+				
+		window.onload = function(){
+
+			var population = 18;
+			
+			for(var i=0; i<population; i++){
+
+				createBall();
+			}
+
+			var cron = setInterval(render,1000/26);
+			
+			 /*Breakpoint
+				setTimeout(
+					function(){
+						clearInterval(cron);
+					},6000);
+			*/
+		};
+
+	</script>
+</body>
+</html>
