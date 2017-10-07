@@ -3,20 +3,22 @@
 		<title>
 			Alpesh's GitHub
 		</title>
-
-	<style>
-
-		body {
-			/* NOT for Rainy theme
-				background-color: rgba(87, 168, 255, 1);	*/
-			color: #FFFFFF;
-		}
+		<style>
 
 		#rainContainer {
 			height: 100%;
 			width: 100%;
-			background: linear-gradient(to bottom,rgb(14, 51, 117),rgb(145, 170, 221));
 			overflow: hidden;
+		}
+
+		.rainContainerSimple {
+		/* Simple Blue Theme */
+			background: linear-gradient(to bottom,rgb(14, 51, 117),rgb(145, 170, 221));
+		}
+
+		.rainContainerEveningBrim {
+		/* Evening brim Theme */
+			background: linear-gradient(to bottom,rgb(92, 97, 223),rgb(99, 150, 204),rgb(200, 253, 151),rgb(53, 147, 184));
 		}
 
 		.rainDrop {
@@ -24,10 +26,12 @@
 			height: 80px;
 			background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.55));
 			position: fixed;
+			left: 0px;
 		}
 
 		@-webkit-keyframes ripple {
 			0% {
+				left: 0px;
 				width: 1px;
 				height: 80px;
 				background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.55));
@@ -37,38 +41,117 @@
 				height: 1px;
 				background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.55));
 			}
-			100% {
+			50% {
+				left: -40px;
 				width: 80px;
 				height: 1px;
 				background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.55));
+			}
+			100% {
+				background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.0));
 			}
 		}
 
 		.rainDropFallen {
 			position: fixed;
 			animation-name: ripple;
-			animation-duration: 4s;
+			animation-duration: 8s;
 			-webkit-animation-name: ripple;
-			-webkit-animation-duration: 4s;
+			-webkit-animation-duration: 8s;
 		}
 
-		#msg {
-			width: 50%;
-			font-size: 32;
-			font-family: monospace;
-			align-content: center;
-			margin: auto;
-			text-align: center;
-			color: darkblue;
-			margin-top: 150px;
+	.birdy{
+		background:white;
+		border-radius: 50% 50% 20% 20%;
+		color:white;
+		line-height:20px;
+		letter-spacing: 2px;
+		font-size:0.8em;
+		text-align:center;
+		position:absolute;
+		top:50%; left:50%;
+		margin-top:-20px; margin-left:-10px;
+		width:15px; height:15px;
+		-webkit-animation:planeo 35s ease-out normal forwards;
+		-webkit-transform: rotateY(45deg);
+		z-index:999;
+	}
+
+	.birdy:after, .birdy:before{
+		content:"";
+		position:absolute;
+		top:50%; left:50%;
+	}
+
+	/*------------- bird wings	*/
+
+	.birdy:after{
+		border-radius: 100% 100% 0 0;
+		box-shadow: inset 0px 5px 0 white;
+		width:100px; height:100px;
+		margin-top:-7px; margin-left:-50px;
+		-webkit-transform-origin: 100% 0%;
+		-webkit-animation:alas 3s linear infinite;
+	}
+
+	/*------------- bird beak	*/
+
+	.birdy:before{
+		border-radius: 100% 0% 20% 0%;
+		margin-top:3px; margin-left:-4px;
+		width:60px; height:60px;
+		-webkit-transform:rotateZ(45deg);
+	}
+
+	/*------------- wings animation	*/
+
+	@-webkit-keyframes alas {
+		50%{
+			-webkit-transform:rotateX(120deg);
 		}
-		
-	</style>
+	}
+
+	/*------------- bird animation	*/
+
+	@-webkit-keyframes planeo {
+		0%{
+			-webkit-transform: scale(1,1) translateX(-700px);
+		}
+		100%{
+			-webkit-transform: scale(0,0) translateX(-600px);
+			visibility: hidden;
+			margin-top: 0px;
+			margin-left: 0px;
+		}
+	}
+
+	.birdytop{
+		margin-top: -80px;
+	}
+
+	.birdyLeft{
+		margin-left: -55px;
+		-webkit-transform: scale(0.5,0.5);
+	}
+
+	.birdyRight{
+		margin-left: 55px;
+		-webkit-transform: scale(0.5,0.5);
+	}
+
+		</style>
 	</head>
 <body>
 
-  <!-- <div id="msg">Hello world!</div> -->
-  <div id="rainContainer"></div>
+	<div id="rainContainer" class="rainContainerEveningBrim">
+	</div>
+
+	<div id="birdContainer">
+		<div class="birdy birdytop">ии</div>
+		<div class="birdy birdyLeft">ии</div>
+		<div class="birdy birdyRight">ии</div>
+	</div>
+
 	<script>
 
 		var drops = [];
@@ -79,14 +162,15 @@
 
 				var left = Math.floor( Math.random() * 1300 );
 				var bottom = Math.floor( Math.random() * 720 )+720;
+				var z = Math.floor( Math.random() * 80 );
 				var vel = Math.floor( Math.random() * 2 )+2;
 
-				drops.push({"left": left, "bottom": bottom, "vel": vel});
+				drops.push({"left": left, "bottom": bottom, "vel": vel, "z": z});
 				console.log("born @ "+drops.length+" >> "+vel);
 
 				var newDrop = document.createElement("DIV");
 				newDrop.className = "rainDrop";
-				newDrop.style.left = left+"px";
+				newDrop.style.marginLeft = left+"px";
 				newDrop.style.bottom = bottom+"px";
 
 			/*** Dumb Garbage Collector*/
@@ -113,7 +197,7 @@
 				var bottom = drops[i].bottom-drops[i].vel;
 				drops[i].bottom = bottom;
 
-				if( bottom>120 )
+				if( bottom>(120-drops[i].z) )
 					droplets[i].style.bottom = bottom + "px";
 				else {
 
@@ -130,7 +214,7 @@
 
 		window.onload = function(){
 
-			var population = 100;
+			var population = 300;
 			
 			for(var i=0; i<population; i++){
 
