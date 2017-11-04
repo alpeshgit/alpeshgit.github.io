@@ -80,7 +80,7 @@ input[type=button]:hover {
 
 .row:hover{
     background-color: rgba(255, 255, 255, 0.2);
-}
+}v
 
 .row>div{
     display: inline-block;
