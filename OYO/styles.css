@@ -1,0 +1,132 @@
+body {
+    height: 500px;
+	min-width: 250px;
+/*    background-color: #414141;*/
+/*    background-color: rgb(193, 2, 101);*/
+    background-color: rgb(160, 121, 177);
+    padding: 20px;
+	color: #FFFFFF;
+}
+
+.header{
+}
+
+input[type=text], select {
+    width: calc(100% - 54px);
+	min-width: 150px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    width: 50px;
+ /*   background-color: #4CAF50;*/
+    background-color: #000000;
+	color: #FFF;
+    background-size: 70%;
+    background-position: 7px 4px;
+    background-repeat: no-repeat;
+    padding-top: 10px;
+    padding-bottom: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+ /*   background-color: #45a049;*/
+    background-color: #11a217;
+}
+
+.searchButton{
+    background-image: url(images/search.png);
+}
+
+.backButton{
+    background-image: url(images/back.png);
+}
+
+.bodyContainer{
+	overflow-x: hidden;
+	min-width: 250px;
+}
+
+.body{
+    font-family: sans-serif;
+    padding-top: 20px;
+}
+
+.page{
+	display: none;
+}
+
+.row{
+	width: 100%;
+	height: 18px;
+	overflow: hidden;
+	padding-bottom: 5px;
+	padding-top: 20px;
+	display: flex;
+	border-bottom: 2px solid #FFFFFF;
+    background: linear-gradient(-45deg,rgba(0, 0, 0, 0) 35%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 65%);
+    background-repeat-x: no-repeat;
+    background-size: 300%;
+    animation: shine 2s;
+}
+
+.row:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.row>div{
+    display: inline-block;
+}
+
+@keyframes shine{
+	0%{
+	    background-position-x: 200%;
+		width: 0%;
+		color: rgba(0,0,0,0);
+	}
+	50%{
+	    background-position-x: 100%;
+		color: rgba(0,0,0,0);
+	}
+	65%{
+		width: 100%;
+		color: rgba(0,0,0,0);
+	}
+	95%{
+		width: 100%;
+		color: rgba(0,0,0,0);
+	}
+	100%{
+	    background-position-x: 0%;
+		width: 100%;
+		color: rgba(255,255,255,1);
+	}	
+}
+
+.rLogo{
+	width: 10%;
+	min-width: 25px;
+	max-width: 50px;
+    text-align: right;
+}
+
+.rName{
+    width: calc(100% - 150px);
+	min-width: 40px;
+    padding-left: 10px;
+}
+
+.rPrice{
+	width: 15%;
+	min-width: 40px;
+	max-width: 100px;
+	text-align: center;
+}
