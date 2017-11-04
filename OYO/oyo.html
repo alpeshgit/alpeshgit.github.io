@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>OYO</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="searchPage" class="page">
+	<div class="header">
+		<input type="text" id="rName" name="rName" placeholder="Enter name.." onKeyUp="fetchData()">
+		<input type="button" class="searchButton" value="" onclick="fetchData()">
+	</div>
+	<div class="body" id="resultContainer">
+		<!--
+		<div class="row">
+			<div class="rLogo">1</div>
+			<div class="rName">Shree Sai</div>
+			<div class="rPrice">50</div>
+		</div>
+		<div class="row">
+			<div class="rLogo">2</div>
+			<div class="rName">Mint Leaf</div>
+			<div class="rPrice">60</div>
+		</div>
+		-->
+	</div>
+</div>
+<div id="accountPage" class="page">
+	<div class="header">
+		<input type="button" class="backButton" value="&#9665;" onclick="goBack()">
+		Mint Leaf
+	</div>
+	<div class="body" id="menuContainer">
+		<div class="row" onclick="goNext()">
+			<div class="rLogo">1</div>
+			<div class="rName">Leaf's Special</div>
+			<div class="rPrice">₹​ 130</div>
+		</div>
+		<div class="row" onclick="goNext()">
+			<div class="rLogo">2</div>
+			<div class="rName">Vegmalai</div>
+			<div class="rPrice">₹​ 60</div>
+		</div>
+		<div class="row" onclick="goNext()">
+			<div class="rLogo">3</div>
+			<div class="rName">McPuff</div>
+			<div class="rPrice">₹​ 50</div>
+		</div>
+	</div>
+</div>
+<div id="menuPage" class="page">
+	<div class="header">
+		<input type="button" class="backButton" value="&#9665;" onclick="goBack()">
+		Leaf's Special ₹​ 130
+	</div>
+	<div class="body" id="menuDetailContainer">
+		<div class="row">
+			<div class="rName">Chicken Rogan</div>
+			<div class="rPrice">1</div>
+		</div>
+		<div class="row">
+			<div class="rName">Chapati</div>
+			<div class="rPrice">UL</div>
+		</div>
+		<div class="row">
+			<div class="rName">Rasmalai</div>
+			<div class="rPrice">1</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="script.js" ></script>
+</body>
+</html>
