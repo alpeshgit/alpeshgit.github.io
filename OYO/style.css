@@ -12,7 +12,10 @@ body {
 }
 
 input[type=text], select {
-    width: calc(100% - 60px);
+    width: calc(100% - 54px);
+	width: -moz-calc(100% - 54px);
+    width: -o-calc(100% - 54px);
+    width: -webkit-calc(100% - 54px);
 	min-width: 150px;
     padding: 12px 20px;
     margin: 8px 0;
