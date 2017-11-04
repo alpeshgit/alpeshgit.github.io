@@ -1,5 +1,5 @@
 body {
-    height: 500px;
+	height: 500px;
 	min-width: 250px;
 /*    background-color: #414141;*/
 /*    background-color: rgb(193, 2, 101);*/
@@ -12,7 +12,7 @@ body {
 }
 
 input[type=text], select {
-    width: calc(100% - 54px);
+    width: calc(100% - 60px);
 	min-width: 150px;
     padding: 12px 20px;
     margin: 8px 0;
