@@ -28,7 +28,7 @@ function bakeDataCell(acc){
 
 function fetchData(resJson){
 
-	data = JSON.parse(resJson);
+	database = JSON.parse(resJson);
 	console.log("Recv "+resJson.length);
 
 	var val = document.getElementById("rName").value.toLowerCase();
