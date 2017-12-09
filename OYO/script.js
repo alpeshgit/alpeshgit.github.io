@@ -1,7 +1,7 @@
 
 var pages = ["searchPage","accountPage","menuPage"];
 var pageIndex = -1;
-
+/*
 var database = [
 			{name:"Shree Sai", price: 12},
 			{name:"Mint Leaf", price: 42},
@@ -13,17 +13,21 @@ var database = [
 			{name:"Walnut", price: 25},
 			{name:"Crook", price: 48}
 ];
+*/
+
+var database = [];
+
 
 var data = [];
 
-function bakeDataCell(i){
+function bakeDataCell(acc){
 	
-	return {'name': 'Res '+i, 'price': i*10000%39};
+	return {'name': acc.Name, 'price': (acc.StartPrice__c)?acc.StartPrice__c: '-'};
 }
 
-function fetchData(){
-	
-	data = [];
+function fetchData(resJson){
+
+	data = resJson;
 
 	var val = document.getElementById("rName").value.toLowerCase();
 	
@@ -32,6 +36,7 @@ function fetchData(){
 			data.push(database[i]);
 		
 	fillData();
+	goNext();		
 }
 
 function fillData(){
@@ -147,6 +152,3 @@ function goBack(){
 	var newPage = document.getElementById(pages[pageIndex]);
 	newPage.style.display = "block ";
 }
-
-fetchData();
-goNext();
