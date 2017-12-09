@@ -34,8 +34,7 @@ function fetchData(resJson){
 	var val = document.getElementById("rName").value.toLowerCase();
 	
 	for(var i=0; i<database.length; i++)
-		if(database[i].name.toLowerCase().indexOf(val)!=-1)
-			data.push(bakeDataCell(database[i]));
+		data.push(bakeDataCell(database[i]));
 		
 	fillData();
 	goNext();		
