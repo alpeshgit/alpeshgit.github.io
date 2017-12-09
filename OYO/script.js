@@ -22,6 +22,7 @@ var data = [];
 
 function bakeDataCell(acc){
 	
+	console.log("baking "+acc.Name);
 	return {'name': acc.Name, 'price': (acc.StartPrice__c)?acc.StartPrice__c: '-'};
 }
 
