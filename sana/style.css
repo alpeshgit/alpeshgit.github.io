@@ -1,4 +1,12 @@
 
+#searchPage{
+	display: none;
+}
+
+#accountPage{
+	display: none;
+}
+
 .body-P1{
 
     margin-top: 50px;
