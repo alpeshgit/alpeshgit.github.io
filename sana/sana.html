@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Sana</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div id="searchPage" class="page slds-hide">
+		<header class="slds-global-header_container">
+			<div class="slds-global-header slds-grid slds-grid_align-spread">
+				<ul class="slds-global-header__item slds-grid slds-grid_vertical-align-center">
+					<li class="slds-grid">
+						<button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-header__button_icon-rows" aria-pressed="false" title="Search">
+							<svg class="slds-button__icon slds-global-header__icon" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#rows" />
+							</svg>
+							<span class="slds-assistive-text">Search</span>
+						</button>
+					</li>
+				</ul>
+				<div class="slds-global-header__item slds-global-header__item_search">
+					<div aria-expanded="false" aria-haspopup="listbox" class="slds-form-element" role="combobox">
+						<div class="slds-form-element__control" >
+							<input type="text" aria-activedescendant="" aria-autocomplete="list" aria-controls="global-search-list-01" autocomplete="off" class="slds-input crr-GH-pad-L" id="global-search-01" placeholder="Search" role="textbox" />
+						</div>
+					</div>
+				</div>
+				<ul class="slds-global-header__item slds-grid slds-grid_vertical-align-center">
+					<li class="slds-grid">
+						<button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-header__button_icon-search" aria-pressed="false" title="Search">
+							<svg class="slds-button__icon slds-global-header__icon" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search" />
+							</svg>
+							<span class="slds-assistive-text">Search</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<div class="body-P1 slds-p-around_medium" id="resultContainer">
+			<article class="slds-card">
+				<div class="slds-card__header slds-grid">
+					<header class="slds-media slds-media_center slds-has-flexi-truncate">
+						<div class="slds-media__body">
+							<h2>
+								<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Spruha">
+									<span class="slds-text-heading_small">Spruha</span>
+								</a>
+							</h2>
+						</div>
+					</header>
+					<div class="slds-media__figure">
+						<div class="slds-media__body">
+							<h2>
+								<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Spruha">
+									<span class="slds-text-heading_small">₹ 25</span>
+								</a>
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="slds-card__body slds-card__body_inner">
+					Kothrud
+				</div>
+				<footer class="slds-card__footer">
+					Bengan Masala, Bhendi fry...
+				</footer>
+			</article>
+		</div>
+	</div>
+	<div id="accountPage" class="page">
+		<header class="slds-global-header_container">
+			<div class="slds-global-header slds-grid slds-grid_align-spread crr-GH-boxsh-N">
+				<ul class="slds-global-header__item slds-grid slds-grid_vertical-align-center">
+					<li class="slds-grid">
+						<button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-header__button_icon-back" aria-pressed="false" title="Back">
+							<svg class="slds-button__icon slds-global-header__icon cds-F-W" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#back" />
+							</svg>
+							<span class="slds-assistive-text">Back</span>
+						</button>
+					</li>
+				</ul>
+				<div class="slds-global-header__item slds-global-header__item_search">
+					<div aria-expanded="false" aria-haspopup="listbox" class="slds-form-element" role="combobox">
+						<div class="slds-form-element__control" >
+						</div>
+					</div>
+				</div>
+				<ul class="slds-global-header__item slds-grid slds-grid_vertical-align-center">
+					<li class="slds-grid">
+						<button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-header__button_icon-favorite" aria-pressed="false" title="Favorite">
+							<svg class="slds-button__icon slds-global-header__icon cds-F-W" aria-hidden="true">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#favorite" />
+							</svg>
+							<span class="slds-assistive-text">Favorite</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+			<div class="slds-global-header slds-grid slds-grid_align-spread crr-GH-boxsh-N">
+				<div class="slds-media slds-media_center slds-has-flexi-truncate">
+					<div class="slds-media__body slds-align_absolute-center">
+						<h1>
+							<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Spruha">
+								<span class="slds-text-heading_medium">Spruha</span>
+							</a>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div class="slds-global-header slds-grid slds-grid_align-spread crr-GH-pad-N crr-GH-boxsh-N">
+				<div class="slds-media slds-media_center slds-has-flexi-truncate">
+					<div class="slds-media__body slds-align_absolute-center">
+						<span class="slds-text-body_regular">Bandstreet, West 50</span>
+					</div>
+				</div>
+			</div>
+			<div class="slds-global-header slds-grid slds-grid_align-spread crr-GH-pad-N crr-GH-boxsh-N">
+				<div class="slds-media slds-media_center slds-has-flexi-truncate">
+					<div class="slds-media__body slds-align_absolute-center">
+						<span class="slds-text-body_regular">Kothrud</span>
+					</div>
+				</div>
+			</div>
+			<div class="slds-global-header crr-GH-height">
+				<div class="slds-grid slds-grid_align-spread slds-p-horizontal_small">
+					<div class="slds-size_2-of-6 slds-small-size_5-of-12 slds-p-around_x-small cds-border-top cds-border-right slds-text-align_right">
+						346<br/>
+						meters
+					</div>
+					<div class="slds-size_4-of-6 slds-small-size_7-of-12 slds-p-around_x-small cds-border-top slds-text-align_left">
+						Now open<br/>
+						11:00 - 15:00
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="body-P2 slds-p-around_medium" id="resultContainer">
+			<div class="slds-grid slds-grid_align-center slds-wrap">
+				<div class="slds-size_6-of-6 slds-small-size_3-of-6 slds-m-horizontal_xxx-small slds-m-vertical_x-small">
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media_center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<span class="slds-icon_container slds-icon-standard-record" title="">
+										<svg class="slds-icon slds-icon_small" aria-hidden="true">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#record" />
+										</svg>
+									</span>
+								</div>
+								<div class="slds-media__body">
+									<h2>
+										<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+											<span class="slds-text-heading_small">Spruha's Special</span>
+										</a>
+									</h2>
+								</div>
+								<div class="slds-no-flex">
+									<h2>
+										<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+											<span class="slds-text-heading_small">₹ 25</span>
+										</a>
+									</h2>
+								</div>
+							</header>
+						</div>
+						<div class="slds-card__body slds-card__body_inner">
+							<ul class="slds-has-dividers_bottom-space">
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Bengan Masala</p>
+										</div>
+										<div class="slds-float_right">
+											<p>1</p>
+										</div>
+									</div>
+								</li>
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Chapati</p>
+										</div>
+										<div class="slds-float_right">
+											<p>4</p>
+										</div>
+									</div>
+								</li>
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Rasmalai</p>
+										</div>
+										<div class="slds-float_right">
+											<p>1</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</article>
+				</div>
+				<div class="slds-size_6-of-6 slds-small-size_3-of-6 slds-m-horizontal_xxx-small slds-m-vertical_x-small">
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media_center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<span class="slds-icon_container slds-icon-standard-record" title="">
+										<svg class="slds-icon slds-icon_small" aria-hidden="true">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#record" />
+										</svg>
+									</span>
+								</div>
+								<div class="slds-media__body">
+									<h2>
+										<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+											<span class="slds-text-heading_small">Spruha's Special</span>
+										</a>
+									</h2>
+								</div>
+								<div class="slds-no-flex">
+									<h2>
+										<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+											<span class="slds-text-heading_small">₹ 25</span>
+										</a>
+									</h2>
+								</div>
+							</header>
+						</div>
+						<div class="slds-card__body slds-card__body_inner">
+							<ul class="slds-has-dividers_bottom-space">
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Bengan Masala</p>
+										</div>
+										<div class="slds-float_right">
+											<p>1</p>
+										</div>
+									</div>
+								</li>
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Chapati</p>
+										</div>
+										<div class="slds-float_right">
+											<p>4</p>
+										</div>
+									</div>
+								</li>
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Rasmalai</p>
+										</div>
+										<div class="slds-float_right">
+											<p>1</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</article>
+				</div>
+				<div class="slds-size_6-of-6 slds-small-size_3-of-6 slds-m-horizontal_xxx-small slds-m-vertical_x-small">
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media_center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<span class="slds-icon_container slds-icon-standard-record" title="">
+										<svg class="slds-icon slds-icon_small" aria-hidden="true">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#record" />
+										</svg>
+									</span>
+								</div>
+								<div class="slds-media__body">
+									<h2>
+										<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+											<span class="slds-text-heading_small">Spruha's Special</span>
+										</a>
+									</h2>
+								</div>
+								<div class="slds-no-flex">
+									<h2>
+										<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+											<span class="slds-text-heading_small">₹ 25</span>
+										</a>
+									</h2>
+								</div>
+							</header>
+						</div>
+						<div class="slds-card__body slds-card__body_inner">
+							<ul class="slds-has-dividers_bottom-space">
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Bengan Masala</p>
+										</div>
+										<div class="slds-float_right">
+											<p>1</p>
+										</div>
+									</div>
+								</li>
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Chapati</p>
+										</div>
+										<div class="slds-float_right">
+											<p>4</p>
+										</div>
+									</div>
+								</li>
+								<li class="slds-item">
+									<div class="slds-clearfix">
+										<div class="slds-float_left">
+											<p>Rasmalai</p>
+										</div>
+										<div class="slds-float_right">
+											<p>1</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="script.js" ></script>
+</body>
+</html>
