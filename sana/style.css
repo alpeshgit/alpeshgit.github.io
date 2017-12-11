@@ -1,0 +1,59 @@
+
+.body-P1{
+
+    margin-top: 50px;
+}
+
+.body-P2{
+
+    margin-top: 210px;
+}
+
+.crr-GH-boxsh-N{
+	box-shadow: none;
+}
+
+.crr-GH-pad-L{
+
+	padding-left: 0.75rem !important;
+}
+
+.crr-GH-pad-N{
+
+	padding: 0px !important;
+	height: auto !important;
+}
+
+.crr-GH-pad-NB{
+
+	padding-bottom: 0px !important;
+	height: auto !important;
+}
+
+.crr-GH-pad-NT{
+
+	padding-top: 0px !important;
+	height: auto !important;
+}
+
+.crr-GH-height{
+
+	height: auto !important;
+}
+
+.cds-border-right{
+	border-right: 2px solid white;
+}
+
+.cds-F-W{
+	fill: white;
+}
+
+.cds-border-top{
+	border-top: 2px solid white;
+}
+
+.slds-global-header{
+	background: rgb(38,38,38) !important;
+	color: white;
+}
