@@ -210,7 +210,8 @@
                         var restaurants = resp.searchResult;
 
                         for(var i=0; i<restaurants.length; i++){
-                                
+                            
+                            var restaurant = restaurants[i];
                              // set distance Text
                             restaurant.DistanceText = parseInt(restaurant.Distance);
                             if(restaurant.DistanceText>1000){
@@ -222,14 +223,16 @@
                             }
 
                                 // correct times
-                            restaurants[i].T1 = recreateTime(restaurants[i].T1);
-                            restaurants[i].T2 = recreateTime(restaurants[i].T2);
-                            restaurants[i].T3 = recreateTime(restaurants[i].T3);
-                            restaurants[i].T4 = recreateTime(restaurants[i].T4);
-                            restaurants[i].T1.setMinutes(330);
-                            restaurants[i].T2.setMinutes(330);
-                            restaurants[i].T3.setMinutes(330);
-                            restaurants[i].T4.setMinutes(330);
+                            restaurant.T1 = recreateTime(restaurants[i].T1);
+                            restaurant.T2 = recreateTime(restaurants[i].T2);
+                            restaurant.T3 = recreateTime(restaurants[i].T3);
+                            restaurant.T4 = recreateTime(restaurants[i].T4);
+                            restaurant.T1.setMinutes(330);
+                            restaurant.T2.setMinutes(330);
+                            restaurant.T3.setMinutes(330);
+                            restaurant.T4.setMinutes(330);
+                                
+                            restaurants[i] = restaurant;
                         }
 
                         $scope.restaurants = restaurants;
