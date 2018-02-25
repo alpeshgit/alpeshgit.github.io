@@ -307,7 +307,7 @@
                     restaurant.DistanceText = parseInt(restaurant.Distance);
                     console.log(restaurant.DistanceText);
                     if(restaurant.DistanceText>1000){
-                            restaurant.DistanceText = restaurant.DistanceText/1000;
+                            restaurant.DistanceText = Math.floor(restaurant.DistanceText/1000);
                             restaurant.DistanceUnit = "Km";
                     } else {
                             restaurant.DistanceText = restaurant.DistanceText;
