@@ -304,7 +304,7 @@
                         restaurant.Time = getTimeText(restaurant.T3,restaurant.T4);
 
                    // set distance Text
-                    restaurant.Distance = Math.floor(restaurant.Distance);            
+                    restaurant.Distance = Math.floor(parseInt(restaurant.Distance));            
                     restaurant.Distance = (restaurant.Distance>1000)?restaurant.Distance/1000+"<br />KM":restaurant.Distance+"<br />Metres";
                                 
                     $scope.restaurant = restaurant;
