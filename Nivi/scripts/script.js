@@ -248,8 +248,8 @@
 
         		if(pageNum==1){
 
-        			$scope.fetchRestaurants();
-                    location.hash = "/search";
+        			//$scope.fetchRestaurants();
+                                  location.hash = "/search";
         		} else if(pageNum==2){
 
                     if(payLoad>=$scope.restaurants.length)
@@ -264,11 +264,13 @@
                     now.setDate(1);
                     now.setMonth(0);
                     now.setFullYear(1980);
-                    //console.log("Now "+now.toJSON());
+                    console.log("Now "+now.toJSON());
                     //var now = new Date("1980-01-01T22:45:00.000Z");
                     var OPENS_TIME = 60;
                     var CLOSES_TIME = 30;
                     var session = 0;
+                    console.log(restaurant.T1+" "+restaurant.T2);
+                    console.log(restaurant.T3+" "+restaurant.T4);
 
                     if(now<restaurant.T1){
                         if(Math.round((restaurant.T1-now)/ 60000)<OPENS_TIME){
