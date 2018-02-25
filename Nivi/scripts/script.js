@@ -209,12 +209,27 @@
 
                         var restaurants = resp.searchResult;
 
-                            // parse times
                         for(var i=0; i<restaurants.length; i++){
+                                
+                             // set distance Text
+                            restaurant.DistanceText = parseInt(restaurant.Distance);
+                            if(restaurant.DistanceText>1000){
+                                    restaurant.DistanceText = Math.floor(restaurant.DistanceText/1000);
+                                    restaurant.DistanceUnit = "Km";
+                            } else {
+                                    restaurant.DistanceText = restaurant.DistanceText;
+                                    restaurant.DistanceUnit = "Metres";
+                            }
+
+                                // correct times
                             restaurants[i].T1 = recreateTime(restaurants[i].T1);
                             restaurants[i].T2 = recreateTime(restaurants[i].T2);
                             restaurants[i].T3 = recreateTime(restaurants[i].T3);
                             restaurants[i].T4 = recreateTime(restaurants[i].T4);
+                            restaurants[i].T1.setMinutes(330);
+                            restaurants[i].T2.setMinutes(330);
+                            restaurants[i].T3.setMinutes(330);
+                            restaurants[i].T4.setMinutes(330);
                         }
 
                         $scope.restaurants = restaurants;
@@ -302,18 +317,6 @@
                         restaurant.Time = getTimeText(restaurant.T1,restaurant.T2);
                     else
                         restaurant.Time = getTimeText(restaurant.T3,restaurant.T4);
-
-                   // set distance Text
-                    restaurant.DistanceText = parseInt(restaurant.Distance);
-                    console.log(restaurant.DistanceText);
-                    if(restaurant.DistanceText>1000){
-                            restaurant.DistanceText = Math.floor(restaurant.DistanceText/1000);
-                            restaurant.DistanceUnit = "Km";
-                    } else {
-                            restaurant.DistanceText = restaurant.DistanceText;
-                            restaurant.DistanceUnit = "Metres";
-                    }
-                    console.log(restaurant.DistanceText+restaurant.DistanceUnit);
                                 
                     $scope.restaurant = restaurant;
                    location.hash = "/view/"+payLoad;
