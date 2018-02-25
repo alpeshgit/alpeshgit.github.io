@@ -133,6 +133,16 @@
             },5000);
         }
 
+        function recreateTime(timeString){
+
+            var time = new Date("1980-01-01T00:00:00.000Z");
+            timeString = timeString.split(":");
+            time.setHours(parseInt(timeString[0]));
+            time.setMinutes(parseInt(timeString[1]));
+
+            return time;
+        }
+
         function getTimeHMText(time){
 
             var timeH = time.getUTCHours();
@@ -199,10 +209,10 @@
 
                             // parse times
                         for(var i=0; i<restaurants.length; i++){
-                            restaurants[i].T1 = new Date(restaurants[i].T1);
-                            restaurants[i].T2 = new Date(restaurants[i].T2);
-                            restaurants[i].T3 = new Date(restaurants[i].T3);
-                            restaurants[i].T4 = new Date(restaurants[i].T4);
+                            restaurants[i].T1 = recreateTime(restaurants[i].T1);
+                            restaurants[i].T2 = recreateTime(restaurants[i].T2);
+                            restaurants[i].T3 = recreateTime(restaurants[i].T3);
+                            restaurants[i].T4 = recreateTime(restaurants[i].T4);
                         }
 
                         $scope.restaurants = restaurants;
