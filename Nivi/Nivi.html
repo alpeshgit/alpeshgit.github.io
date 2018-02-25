@@ -1,1 +1,151 @@
+	<!DOCTYPE html>
+	<html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Nivi</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+		<link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body ng-app="jurenuApp" ng-controller="appController" >
+		<div id="loadPage" class="page slds-align_absolute-center">.
+			<img class="brandName" src="images/LogoT.png" >
+		</div>
+		<div id="searchPage" class="page" ng-show="page==1">
+			<header class="searchBar" id="searchBar">
+				<div class="slds-form-element slds-p-bottom_small">
+					<img class="brandName slds-align_absolute-center" src="images/LogoNameBT.png" width="70px" >
+				</div>
+				<div class="slds-form-element">
+					<div class="slds-form-element__control slds-input-has-icon">
+						<img class="slds-icon slds-input__icon crr-icon_left slds-icon-text-default" src="images/LogoT.png" >
+						<svg class="slds-icon slds-input__icon crr-icon_right slds-icon-text-default" aria-hidden="true" onclick="javascript: anime()">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search" />
+						</svg>
+						<input type="text" id="text-input-id-1" class="slds-input crr-input-padding" placeholder="Search" />
+					</div>
+				</div>
+			</header>
+			<div class="body-P1 slds-p-around_medium" id="searchResultContainer" >
+				<article class="slds-card slds-size_6-of-6 slds-small-size_3-of-6 slds-m-horizontal_xxx-small slds-m-vertical_x-small mySlds-align_center" ng-click="navigatePage(2,$index)" ng-repeat="rest in restaurants">
+					<div class="slds-card__header slds-grid">
+						<header class="slds-media slds-media_center slds-has-flexi-truncate">
+							<div class="slds-media__body">
+								<h2>
+									<div class="slds-card__header-link slds-truncate">
+										<span class="slds-text-heading_small">{{rest.Name}}</span>
+									</div>
+								</h2>
+							</div>
+						</header>
+						<div class="slds-media__figure">
+							<div class="slds-media__body">
+								<h2>
+									<div class="slds-card__header-link slds-truncate">
+										<span class="slds-text-heading_small">₹ {{rest.StartPrice}}</span>
+									</div>
+								</h2>
+							</div>
+						</div>
+					</div>
+					<div class="slds-card__body slds-card__body_inner">
+						{{rest.Area}}
+					</div>
+					<footer class="slds-card__footer">
+						{{rest.MenuHint}}
+					</footer>
+				</article>
+			</div>
+		</div>
+		<div id="accountPage" class="page" ng-show="page==2">
+				<header class="myHeaderContainer">
+				<div class="myHeaderRow">
+					<button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-medium slds-float_left" title="Back" ng-click="navigatePage(1)" >
+						<svg class="slds-button__icon cds-F-W cds-btn-size" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#back" />
+						</svg>
+						<span class="slds-assistive-text">Back</span>
+					</button>
+					<div class="">
+					</div>
+					<button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-medium slds-float_right" title="Back" ng-click="navigatePage(1)" ng-show="false">
+						<svg class="slds-button__icon cds-F-W cds-btn-size" aria-hidden="true">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#favorite" />
+						</svg>
+						<span class="slds-assistive-text">Favorite</span>
+					</button>
+				</div>
+				<div class="myHeaderRow slds-align_absolute-center crr-float">
+					<span class="slds-text-heading_medium">{{restaurant.Name}}</span>
+				</div>
+				<div class="mySubHeaderRow slds-align_absolute-center">
+					<span class="slds-text-body_regular">{{restaurant.Street}}</span>
+				</div>
+				<div class="mySubHeaderRow slds-align_absolute-center">
+					<span class="slds-text-body_regular">{{restaurant.Area}}</span>
+				</div>
+				<div class="slds-grid slds-grid_align-spread slds-p-horizontal_small slds-m-top_x-small">
+						<div class="slds-size_2-of-6 slds-small-size_5-of-12 slds-p-around_x-small cds-border-top cds-border-right slds-text-align_right">
+							{{restaurant.Distance}}
+						</div>
+						<div class="slds-size_4-of-6 slds-small-size_7-of-12 slds-p-around_x-small cds-border-top slds-text-align_left status-{{restaurant.Status}}">
+							{{restaurant.StatusLine}}<br>
+							{{restaurant.Time}}
+						</div>
+					</div>
+			</header>
+			<div class="body-P2 slds-p-around_medium" id="restaurantMenuContainer">
+				<div class="slds-grid slds-grid_align-center slds-wrap">
+					<div class="slds-size_6-of-6 slds-small-size_3-of-6 slds-m-horizontal_xxx-small slds-m-vertical_x-small"
+					ng-repeat="menu in restaurant.Menus" >
+						<article class="slds-card">
+							<div class="slds-card__header slds-grid">
+								<header class="slds-media slds-media_center slds-has-flexi-truncate">
+									<div class="slds-media__figure">
+										<span class="slds-icon_container slds-icon-standard-record" title="">
+											<svg class="slds-icon slds-icon_small" aria-hidden="true">
+												<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#record" />
+											</svg>
+										</span>
+									</div>
+									<div class="slds-media__body">
+										<h2>
+											<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+												<span class="slds-text-heading_small">{{menu.Name}}</span>
+											</a>
+										</h2>
+									</div>
+									<div class="slds-no-flex">
+										<h2>
+											<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="">
+												<span class="slds-text-heading_small">₹ {{menu.Price}}</span>
+											</a>
+										</h2>
+									</div>
+								</header>
+							</div>
+							<div class="slds-card__body slds-card__body_inner">
+								<ul class="slds-has-dividers_bottom-space">
+									<li class="slds-item" ng-repeat="item in menu.Items">
+										<div class="slds-clearfix">
+											<div class="slds-float_left">
+												<p>{{item.Name}}</p>
+											</div>
+											<div class="slds-float_right">
+												<p>{{item.Quantity}}</p>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<script type="text/javascript" src="scripts/angular.js" ></script>
+		<script type="text/javascript" src="scripts/script.js" ></script>
+	</body>
+	</html>

@@ -1,0 +1,58 @@
+		{ Name:"KFC", Street:"Subway street", Area:"Downtown", StartPrice:99, MenuHint:"Aloo Tikki, Veg Burger", Distance:"340 meters", T1:"1980-01-01T11:00:00.000Z", T2:"1980-01-01T13:20:00.000Z", T3:"1980-01-01T19:00:00.000Z", T4:"1980-01-01T22:00:00.000Z",
+    				Menus: [
+    					{ Name:"Aloo Tikki Meal", Price:99,
+    						Items: [
+    							{ Name:"Aloo Tikki", Quantity:1 },
+    							{ Name:"French Fries", Quantity:"SM" },
+    							{ Name:"Coke", Quantity:"SM" }
+    						]
+    					},
+    					{ Name:"Mc Maharaja", Price:149,
+    						Items: [
+    							{ Name:"Veg Burger", Quantity:1 },
+    							{ Name:"French Fries", Quantity:"MD" },
+    							{ Name:"Coke", Quantity:"MD" }
+    						]
+    					}
+    				]
+    			},
+    			{ Name:"Spruha Rutu", Street:"Cafe Road", Area:"Juhu", StartPrice:80, MenuHint:"Aloo Mutter, Bhendi Fry, Dal", Distance:"750 meters", T1:"1980-01-01T11:30:00.000Z", T2:"1980-01-01T13:30:00.000Z", T3:"1980-01-01T20:00:00.000Z", T4:"1980-01-01T22:00:00.000Z",
+    				Menus: [
+    					{ Name:"Mini Lunch", Price:80,
+    						Items: [
+    							{ Name:"Aloo Mutter", Quantity:1 },
+    							{ Name:"Chapati", Quantity:4 },
+    							{ Name:"Salad", Quantity:1 }
+    						]
+    					},
+    					{ Name:"Regular Lunch", Price:120,
+    						Items: [
+    							{ Name:"Bhendi Fry", Quantity:1 },
+    							{ Name:"Dal", Quantity:1 },
+    							{ Name:"Chapati", Quantity:6 },
+    							{ Name:"Raita", Quantity:1 }
+    						]
+    					}
+    				]
+    			},
+    			{ Name:"Arihant", Street:"Lane 5", Area:"Karvenagar", StartPrice:30, MenuHint:"Matki Masala, Dal, Rice", Distance:"2 KM", T1:"1980-01-01T11:20:00.000Z", T2:"1980-01-01T13:40:00.000Z", T3:"1980-01-01T19:30:00.000Z", T4:"1980-01-01T22:30:00.000Z",
+    				Menus: [
+    					{ Name:"Regular thali", Price: 30,
+    						Items: [
+    							{ Name:"Matki Masala", Quantity:1 },
+    							{ Name:"Chapati", Quantity:4 },
+    							{ Name:"Raita", Quantity:1 }
+    						]
+    					},
+    					{ Name:"Deluxe Thali", Price:70,
+    						Items: [
+    							{ Name:"Matki Masala", Quantity:1 },
+    							{ Name:"Dal", Quantity:1 },
+    							{ Name:"Rice", Quantity:1 },
+    							{ Name:"Chapati", Quantity:4 },
+    							{ Name:"Raita", Quantity:1 },
+    							{ Name:"Gulab Jamun", Quantity:2 }
+    						]
+    					}
+    				]
+    			}
