@@ -140,6 +140,8 @@
             time.setHours(parseInt(timeString[0]));
             time.setMinutes(parseInt(timeString[1]));
 
+            console.log("recreated "+time+" from "+timeString);
+                
             return time;
         }
 
@@ -301,6 +303,10 @@
                     else
                         restaurant.Time = getTimeText(restaurant.T3,restaurant.T4);
 
+                   // set distance Text
+                    restaurant.Distance = Math.floor(restaurant.Distance);            
+                    restaurant.Distance = (restaurant.Distance>1000)?restaurant.Distance/1000+"<br />KM":restaurant.Distance+"<br />Metres";
+                                
                     $scope.restaurant = restaurant;
                     location.hash = "/view/"+payLoad;
         		} else {
