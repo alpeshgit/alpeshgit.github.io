@@ -86,9 +86,8 @@
 					<span class="slds-text-body_regular">{{restaurant.Area}}</span>
 				</div>
 				<div class="slds-grid slds-grid_align-spread slds-p-horizontal_small slds-m-top_x-small">
-						<div class="slds-size_2-of-6 slds-small-size_5-of-12 slds-p-around_x-small cds-border-top cds-border-right slds-text-align_right"
-						     ng-bind-html-unsafe="name">
-							{{restaurant.DistanceText}}
+						<div class="slds-size_2-of-6 slds-small-size_5-of-12 slds-p-around_x-small cds-border-top cds-border-right slds-text-align_right">
+							{{restaurant.DistanceText}}<br />{{restaurant.DistanceUnit}}
 						</div>
 						<div class="slds-size_4-of-6 slds-small-size_7-of-12 slds-p-around_x-small cds-border-top slds-text-align_left status-{{restaurant.Status}}">
 							{{restaurant.StatusLine}}<br>
