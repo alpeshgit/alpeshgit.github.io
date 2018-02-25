@@ -306,7 +306,7 @@
                    // set distance Text
                     restaurant.DistanceText = parseInt(restaurant.Distance);
                     console.log(restaurant.DistanceText);
-                    restaurant.DistanceText = (restaurant.DistanceText>1000)?(restaurant.DistanceText/1000)+"<br />KM":restaurant.DistanceText+"<br />Metres";
+                    restaurant.DistanceText = (restaurant.DistanceText>1000)?(restaurant.DistanceText/1000)+"<br>KM":restaurant.DistanceText+"<br>Metres";
                     console.log(restaurant.DistanceText);
                                 
                     $scope.restaurant = restaurant;
