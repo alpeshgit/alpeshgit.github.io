@@ -310,12 +310,12 @@
                     console.log(restaurant.Distance);
                                 
                     $scope.restaurant = restaurant;
-                    location.hash = "/view/"+payLoad;
+              /*      location.hash = "/view/"+payLoad;
         		} else {
 
                     location.hash = "/go";
         		}
-
+*/
         	};
 
         	$scope.navigatePage(1);
