@@ -304,18 +304,18 @@
                         restaurant.Time = getTimeText(restaurant.T3,restaurant.T4);
 
                    // set distance Text
-                    restaurant.Distance = parseInt(restaurant.Distance);
-                    console.log(restaurant.Distance);
-                    restaurant.Distance = (restaurant.Distance>1000)?(restaurant.Distance/1000)+"<br />KM":restaurant.Distance+"<br />Metres";
-                    console.log(restaurant.Distance);
+                    restaurant.DistanceText = parseInt(restaurant.Distance);
+                    console.log(restaurant.DistanceText);
+                    restaurant.DistanceText = (restaurant.DistanceText>1000)?(restaurant.DistanceText/1000)+"<br />KM":restaurant.DistanceText+"<br />Metres";
+                    console.log(restaurant.DistanceText);
                                 
                     $scope.restaurant = restaurant;
-              /*      location.hash = "/view/"+payLoad;
+                   location.hash = "/view/"+payLoad;
         		} else {
 
                     location.hash = "/go";
         		}
-*/
+
         	};
 
         	$scope.navigatePage(1);
