@@ -223,10 +223,10 @@
                             }
 
                                 // correct times
-                            restaurant.T1 = recreateTime(restaurants[i].T1);
-                            restaurant.T2 = recreateTime(restaurants[i].T2);
-                            restaurant.T3 = recreateTime(restaurants[i].T3);
-                            restaurant.T4 = recreateTime(restaurants[i].T4);
+                            restaurant.T1 = recreateTime(restaurant.T1);
+                            restaurant.T2 = recreateTime(restaurant.T2);
+                            restaurant.T3 = recreateTime(restaurant.T3);
+                            restaurant.T4 = recreateTime(restaurant.T4);
                             restaurant.T1.setMinutes(330);
                             restaurant.T2.setMinutes(330);
                             restaurant.T3.setMinutes(330);
