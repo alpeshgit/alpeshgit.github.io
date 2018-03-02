@@ -206,7 +206,10 @@ myApp.controller("appController",function($scope, $http){
             console.log(position.coords.latitude+", "+position.coords.longitude);
 
         var param = {
-                        geo : position.coords,
+                        geo : {
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude
+                            },
                         searchText: "pum"
         };	
                 
