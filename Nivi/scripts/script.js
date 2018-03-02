@@ -210,7 +210,12 @@ myApp.controller("appController",function($scope, $http){
                         searchText: "pum"
         };	
                 
-            $http.post("https://jurenu-developer-edition.ap5.force.com/sana/services/apexrest/eateries",param)
+            $http({
+                method: 'POST',
+                url: "https://jurenu-developer-edition.ap5.force.com/sana/services/apexrest/eateries",
+                data: param,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
             .then(function(response) {
                 var resp = response.data;
                 
