@@ -119,7 +119,11 @@
 
 /* Detail View Header */
 .myHeaderContainer{
-	background: rgb(38,38,38) !important;
+    background: url(images/LogoT.png);
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+    background-size: cover;
+    background-color: rgb(38,38,38) !important;
     color: white;
     padding: 8px;
 }
