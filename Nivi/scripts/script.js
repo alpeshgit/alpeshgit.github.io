@@ -210,7 +210,7 @@ myApp.controller("appController",function($scope, $http){
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
            },
-          searchText : "tum"
+          searchText : $scope.searchText
       };
             
         encoder = function(obj) {
