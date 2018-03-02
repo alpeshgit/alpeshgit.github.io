@@ -205,18 +205,28 @@ myApp.controller("appController",function($scope, $http){
             console.log("geo callback start");
             console.log(position.coords.latitude+", "+position.coords.longitude);
 
-            var geo = {
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude
-                       };
-            var searchText = "tum";
-        var param = "geo="+JSON.stringify(geo)+"&searchText="+searchText;
+      var param = {
+          geo : {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+           },
+          searchText : "tum"
+      };
             
+        encoder = function(obj) {
+            var p = [];
+            for (var key in obj) {
+            p.push(key + '=' + JSON.stringify(obj[key]));
+            }
+            return p.join('&');
+        };
+
+            console.log("req "+encoder(param));
         
             $http({
                 method: 'POST',
                 url: "https://jurenu-developer-edition.ap5.force.com/sana/services/apexrest/eateries",
-                data: param,
+                data: encoder(param),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
             .then(function(response) {
