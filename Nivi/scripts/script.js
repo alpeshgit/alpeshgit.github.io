@@ -209,14 +209,22 @@ myApp.controller("appController",function($scope, $http){
                         geo : {
                                 latitude: position.coords.latitude,
                                 longitude: position.coords.longitude
+                            },
+                        encode : function(this) {
+                            var p = [];
+                             for (var key in this) {
+                                p.push(key + '=' + encodeURIComponent(this[key]));
                             }
+                            return p.join('&');
+                        }
         };	
-                
+            
+        
             $http({
                 method: 'POST',
                 url: "https://jurenu-developer-edition.ap5.force.com/sana/services/apexrest/eateries",
-                data: JSON.stringify(param),
-                headers: {'Content-Type': 'application/form-data'}
+                data: param.encode(),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
             .then(function(response) {
                 var resp = response.data;
