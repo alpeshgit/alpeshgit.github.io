@@ -297,7 +297,7 @@ myApp.controller("appController",function($scope, $http){
 
     $scope.fetchRestaurants = function(){
 
-        if($scope.searchText.trim().length()>0){
+        if($scope.searchText.trim().length>0){
             var p = anime();
             $scope.ajaxSearch(p);
         }
