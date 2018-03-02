@@ -205,12 +205,12 @@ myApp.controller("appController",function($scope, $http){
             console.log("geo callback start");
             console.log(position.coords.latitude+", "+position.coords.longitude);
 
-        var param = {
-                        geo : {
+            var geo = {
                                 latitude: position.coords.latitude,
                                 longitude: position.coords.longitude
-                       }
-        };	
+                       };
+            var searchText = "tum";
+        var param = "geo="+JSON.stringify(geo)+"&searchText="+searchText;
             
         
             $http({
