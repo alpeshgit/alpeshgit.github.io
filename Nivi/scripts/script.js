@@ -123,7 +123,7 @@ function anime() {
     var color = "#800000";
 
     var p = setInterval(function(){
-        color = changeHue(color, 13)
+        color = changeHue(color, 7)
         stripe.style.borderBottomColor = color;
         //console.log("HEX "+color);
     },1000/60);
@@ -297,8 +297,10 @@ myApp.controller("appController",function($scope, $http){
 
     $scope.fetchRestaurants = function(){
 
-        var p = anime();
-        $scope.ajaxSearch(p);
+        if($scope.searchText.trim().length()>0){
+            var p = anime();
+            $scope.ajaxSearch(p);
+        }
     }
 
     $scope.navigatePage = function(pageNum,payLoad){
