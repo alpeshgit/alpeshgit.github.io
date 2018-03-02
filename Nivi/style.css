@@ -94,9 +94,20 @@
 	right: 0.75rem;
 }
 
-.crr-input-padding{
+.div-sideButton{
+	background-color: #4285f4;
+    border-radius: 0.25rem;
+}
+
+.div-sideButton svg {
+	fill: #FFFFFF !important;
+}
+
+.input-sideButton{
 	padding-left: 2.5em;
-    padding-right: 2.5em;
+	border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    width: calc( 100% - 40px );
 }
 
 #searchResultContainer{
