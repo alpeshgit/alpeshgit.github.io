@@ -209,8 +209,7 @@ myApp.controller("appController",function($scope, $http){
                         geo : {
                                 latitude: position.coords.latitude,
                                 longitude: position.coords.longitude
-                            },
-                        searchText: "pum"
+                            }
         };	
                 
             $http({
