@@ -216,7 +216,7 @@ myApp.controller("appController",function($scope, $http){
             $http({
                 method: 'POST',
                 url: "https://jurenu-developer-edition.ap5.force.com/sana/services/apexrest/eateries",
-                data: param,
+                data: JSON.stringify(param),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
             .then(function(response) {
