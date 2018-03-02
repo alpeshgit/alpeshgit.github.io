@@ -196,7 +196,7 @@ window.onhashchange = function() {
 
 var myApp = angular.module("jurenuApp",[]);
 
-myApp.controller("appController",function($scope, $http, $httpParamSerializerJQLike){
+myApp.controller("appController",function($scope, $http){
 
     $scope.ajaxSearch = function(animation){
 
@@ -216,7 +216,7 @@ myApp.controller("appController",function($scope, $http, $httpParamSerializerJQL
             $http({
                 method: 'POST',
                 url: "https://jurenu-developer-edition.ap5.force.com/sana/services/apexrest/eateries",
-                data: $httpParamSerializerJQLike(param),
+                data: param,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
             .then(function(response) {
