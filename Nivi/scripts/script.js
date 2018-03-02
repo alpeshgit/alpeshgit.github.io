@@ -210,7 +210,7 @@ myApp.controller("appController",function($scope, $http){
                                 latitude: position.coords.latitude,
                                 longitude: position.coords.longitude
                             },
-                        encode : function(this) {
+                        encode : function() {
                             var p = [];
                              for (var key in this) {
                                 p.push(key + '=' + encodeURIComponent(this[key]));
