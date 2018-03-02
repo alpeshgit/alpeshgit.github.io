@@ -123,7 +123,7 @@ function anime() {
     var color = "#800000";
 
     var p = setInterval(function(){
-        color = changeHue(color, 2)
+        color = changeHue(color, 13)
         stripe.style.borderBottomColor = color;
         //console.log("HEX "+color);
     },1000/60);
