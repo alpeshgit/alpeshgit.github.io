@@ -3,7 +3,7 @@
 	position: absolute;
     top: 0px;
     left: 0px;
-    background: url(images/footer.png) no-repeat;
+/*  background: url(images/footer.png) no-repeat; */
     background-color: #FFFFFF;
     background-position: center bottom;
     background-size: contain;
