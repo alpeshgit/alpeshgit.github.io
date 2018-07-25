@@ -1,0 +1,230 @@
+<html>
+	<head>
+		<!-- Author: Alpesh -->
+		<title>
+			Musical
+		</title>
+		<style>
+
+		body {
+			background: linear-gradient(to top left,#f00,#0a4ca5);
+		}
+
+		#container {
+			display: inline-block;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 1590px;
+			height: 320px;
+			margin: auto;
+		}
+
+		#containerW, #containerB{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+
+		.keyWhite {
+			background-color: #FFF;
+			height: 300px;
+			width: 70px;
+			float: left;
+			margin-left: 5px;
+		/*	box-shadow: 0px 0px 15px #FFF;	*/
+		}
+
+		.keyBlack {
+			background-color: #000;
+			height: 180px;
+			width: 50px;
+			float: left;
+			margin-left: 25px;
+		}
+
+		.keyBlack:nth-child(1) {
+			margin-left: 51px;
+		}
+
+		.keySpacer {
+			visibility: hidden;
+		}
+
+		.keyPressed{
+			background-color: #90224a;
+			box-shadow: 0px 0px 25px #fff;
+		}
+
+		</style>
+	</head>
+<body onkeydown="playNote(event)" onkeyup="stopNote(event)">
+
+	<div id="container">
+		<div id="containerW">
+			<div class="keyWhite" id="keyC4"></div>
+			<div class="keyWhite" id="keyD4"></div>
+			<div class="keyWhite" id="keyE4"></div>
+			<div class="keyWhite" id="keyF4"></div>
+			<div class="keyWhite" id="keyG4"></div>
+			<div class="keyWhite" id="keyA4"></div>
+			<div class="keyWhite" id="keyB4"></div>
+			<div class="keyWhite" id="keyC5"></div>
+			<div class="keyWhite" id="keyD5"></div>
+			<div class="keyWhite" id="keyE5"></div>
+			<div class="keyWhite" id="keyF5"></div>
+			<div class="keyWhite" id="keyG5"></div>
+			<div class="keyWhite" id="keyA5"></div>
+			<div class="keyWhite" id="keyB5"></div>
+			<div class="keyWhite" id="keyC6"></div>
+			<div class="keyWhite" id="keyD6"></div>
+			<div class="keyWhite" id="keyE6"></div>
+			<div class="keyWhite" id="keyF6"></div>
+			<div class="keyWhite" id="keyG6"></div>
+			<div class="keyWhite" id="keyA6"></div>
+			<div class="keyWhite" id="keyB6"></div>
+		</div>
+		<div id="containerB">
+			<div class="keyBlack" id="keyC#4"></div>
+			<div class="keyBlack" id="keyEm4"></div>
+			<div class="keyBlack keySpacer"></div>
+			<div class="keyBlack" id="keyF#4"></div>
+			<div class="keyBlack" id="keyAm4"></div>
+			<div class="keyBlack" id="keyBm4"></div>
+			<div class="keyBlack keySpacer"></div>
+			<div class="keyBlack" id="keyC#5"></div>
+			<div class="keyBlack" id="keyEm5"></div>
+			<div class="keyBlack keySpacer"></div>
+			<div class="keyBlack" id="keyF#5"></div>
+			<div class="keyBlack" id="keyAm5"></div>
+			<div class="keyBlack" id="keyBm5"></div>
+			<div class="keyBlack keySpacer"></div>
+			<div class="keyBlack" id="keyC#6"></div>
+			<div class="keyBlack" id="keyEm6"></div>
+			<div class="keyBlack keySpacer"></div>
+			<div class="keyBlack" id="keyF#6"></div>
+			<div class="keyBlack" id="keyAm6"></div>
+			<div class="keyBlack" id="keyBm6"></div>
+		</div>
+	</div>
+
+	<script>
+
+		var notes = [
+			{code:50, freq: 277, label: "C#4", type: 1},
+			{code:51, freq: 311, label: "Em4", type: 1},
+			{code:53, freq: 367, label: "F#4", type: 1},
+			{code:54, freq: 415, label: "Am4", type: 1},
+			{code:55, freq: 466, label: "Bm4", type: 1},
+			{code:57, freq: 554, label: "C#5", type: 1},
+			{code:48, freq: 622, label: "Em5", type: 1},
+			{code:187, freq: 734, label: "F#5", type: 1},
+			{code:65, freq: 831, label: "Am5", type: 1},
+			{code:83, freq: 932, label: "Bm5", type: 1},
+			{code:70, freq: 1109, label: "C#6", type: 1},
+			{code:71, freq: 1244, label: "Em6", type: 1},
+			{code:74, freq: 1480, label: "F#6", type: 1},
+			{code:75, freq: 1661, label: "Am6", type: 1},
+			{code:76, freq: 1867, label: "Bm6", type: 1},
+			{code:81, freq: 262, label: "C4", type: 0},
+			{code:87, freq: 294, label: "D4", type: 0},
+			{code:69, freq: 330, label: "E4", type: 0},
+			{code:82, freq: 349, label: "F4", type: 0},
+			{code:84, freq: 392, label: "G4", type: 0},
+			{code:89, freq: 440, label: "A4", type: 0},
+			{code:85, freq: 494, label: "B4", type: 0},
+			{code:73, freq: 523, label: "C5", type: 0},
+			{code:79, freq: 587, label: "D5", type: 0},
+			{code:80, freq: 659, label: "E5", type: 0},
+			{code:219, freq: 698, label: "F5", type: 0},
+			{code:221, freq: 784, label: "G5", type: 0},
+			{code:90, freq: 880, label: "A5", type: 0},
+			{code:88, freq: 988, label: "B5", type: 0},
+			{code:67, freq: 1046, label: "C6", type: 0},
+			{code:86, freq: 1176, label: "D6", type: 0},
+			{code:66, freq: 1318, label: "E6", type: 0},
+			{code:78, freq: 1397, label: "F6", type: 0},
+			{code:77, freq: 1568, label: "G6", type: 0},
+			{code:198, freq: 1761, label: "A6", type: 0},
+			{code:190, freq: 1975, label: "B6", type: 0}
+		];
+
+		var sustain = 2000;
+
+		function $(elem){
+			return document.getElementById(elem);
+		}
+
+		var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+		function sound(frequency, duration) {
+
+
+			// create Oscillator node
+
+			var oscillator = audioCtx.createOscillator();
+
+			oscillator.type = 'sine';
+			oscillator.frequency.value = frequency;
+
+			// value in hertz
+
+			oscillator.connect(audioCtx.destination);
+			oscillator.start();
+
+	/*		setTimeout(
+
+				function(){
+					oscillator.stop();
+				}, duration);
+	*/
+
+			return oscillator;
+		}
+
+		function getNote(key){
+
+			for(i=0; i<notes.length; i++){
+				if(notes[i].code == key)
+					return i;
+			}
+
+			return -1;
+		}
+
+		function playNote(event){
+
+			var key = event.keyCode;
+			
+			if(!event.repeat){
+
+				var index = getNote(key);
+
+				if(index > -1){
+					if(notes[index].osc)
+						notes[index].osc.stop();
+
+					var osc = sound(notes[index].freq,sustain);
+					notes[index].osc = osc;
+					$("key"+notes[index].label).className = (notes[index].type?"keyBlack":"keyWhite")+" keyPressed";
+				}
+			}
+		}
+
+		function stopNote(event){
+
+			var key = event.keyCode;
+			
+			var index = getNote(key);
+
+			if(index > -1){
+				notes[index].osc.stop();
+				$("key"+notes[index].label).className = (notes[index].type?"keyBlack":"keyWhite");
+			}
+		}
+
+	</script>
+</body>
+</html>
