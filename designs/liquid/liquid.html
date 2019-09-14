@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Liquid Drag</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- https://api.jqueryui.com/draggable/#option-containment -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#draggable").draggable({
+                axis: "x",
+                containment: "parent",
+                drag: function(event, ui) {
+                    //var actBar = event.target.parentNode.childNodes[1].childNodes[3];
+                    //var width = actBar.style.width;
+                    var rightPos = parseInt(event.target.style.left);
+                    document.getElementById("a1").style.right = -rightPos + -25 + "px";
+                    //console.log(actBar);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="13" result="blur" />
+                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
+                    result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+
+    <div class="pContainer">
+        <div class="iContainer">
+            <div class="actionbar liquidBottle" >
+                <div class="liquid"></div>
+                <div class="liquid" id="a1"></div>
+            </div>
+            <div class="displaybar" id="draggable">
+                <div class="item"><span>Drag me around</span></div>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="pContainer">
+        <div class="iContainer liquidBottle">
+            <div class="liquid"></div>
+            <div id="draggable">
+                <div class="item liquid"></div>
+                <div class="item"><span>Drag me around</span></div>
+            </div>
+        </div>
+    </div>
+    Make the 2nd liquid drop stick beside draggable div;
+    Try using auto width for liquid container and right: 0px for the 2nd liquid drop
+-->
+</body>
+
+</html>
