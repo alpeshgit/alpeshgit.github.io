@@ -1,0 +1,50 @@
+
+body {
+    color: white;
+    background: #a8c0ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    padding: 50px;
+}
+
+button {
+    margin: auto;
+    background: #ec008c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ec008c, #fc6767, #ec008c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ec008c, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: 300px 100px;
+    background-position: 0px;
+    background-repeat: repeat-x;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #dde6fd;
+    border: 0px;
+    border-radius: 20px;
+    animation: shineDown 1s forwards;
+}
+
+button:hover {
+    animation: shineUp 1s forwards;
+}
+
+@keyframes shineUp {
+    0% {
+        background-position: 0px;
+    }
+    100% {
+        background-position: -150px;
+    }
+}
+
+@keyframes shineDown {
+    0% {
+        background-position: -150px;
+    }
+    100% {
+        background-position: 0px;
+    }
+}
