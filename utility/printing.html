@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <title>Printing Template</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #printBody {
+            margin: auto;
+            width: 29cm;
+            height: 21cm;
+            border: 2px solid black;
+            display: flex;
+        }
+
+        .challan {
+            width: 50%;
+            height: 100%;
+            border: 2px solid black;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+        }
+
+        @media print {
+            @page {
+                size: landscape;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="w3-bar w3-black w3-border">
+            <a href="#" class="w3-bar-item w3-button w3-mobile w3-black w3-hover-black">Printing Template</a>
+            <a href="#" class="w3-bar-item w3-button w3-mobile w3-black w3-hover-black" style="width: 30%"></a>
+            <a href="#" class="w3-bar-item w3-button w3-mobile w3-blue w3-hover-red" onclick="doPrint()">Click to Print <i class="fa fa-print"></i></a>
+            <a href="#" class="w3-bar-item w3-button w3-mobile w3-black w3-hover-black" style="width: 30%"></a>
+          </div>
+    <div id="demo">
+        <div id="printBody">
+            <div class="challan">
+                <section class="cHeader">Receipt 1</section>
+                <section class="cBody">Some data</section>
+                <section class="cFooter">Grand Total</section>
+            </div>
+            <div class="challan">
+                <section class="cHeader">Receipt 2</section>
+                <section class="cBody">Some data</section>
+                <section class="cFooter">Grand Total</section>
+            </div>
+        </div>
+    </div>
+    <script>
+        function doPrint() {
+            var body = document.body.innerHTML;
+            var x = document.getElementById("demo");
+            document.body.innerHTML = x.innerHTML;
+            print();
+            document.body.innerHTML = body;
+        }
+    </script>
+</body>
+</html>
