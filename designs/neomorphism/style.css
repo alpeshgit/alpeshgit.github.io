@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: steelblue;
+    color: #28354f;
+}
+
+#screen {
+    width: 50vw;
+    min-width: 320px;
+    max-width: 400px;
+    height: 80vh;
+    margin: auto;
+    margin-top: 10vh;
+    background-color: #eaf2f9;
+    border-radius: 20px;
+}
+
+i {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.header {
+    background-color: #eaf2f9;
+    display: flex;
+    padding: 10px;
+    padding-top: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.body {
+    background-color: #eaf2f9;
+    height: calc(100% - 173px);
+
+}
+
+.footer {
+    background-color: #eaf2f9;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.neoShadow {
+    box-shadow: -9px -9px 9px #ffffff82, 9px 9px 9px #0000000d;
+}
+
+.toggleButton {
+    width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 36px;
+}
+
+.toggleButton > i {
+    font-size: 36px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 36px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.button {
+    border-radius: 30%;
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    margin: 25px 15px;
+    background-color: #e3edf7;
+    align-items: center;
+}
+
+.icon > i {
+    font-size: 35px !important;
+    line-height: 60px !important;
+}
+
+.selector {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e3edf7;
+    width: 300px;
+    margin: 30px auto;
+    padding: 0px 15px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.selector > div {
+    line-height: 50px;
+    padding: 5px;
+}
+
+.selector > .selector_label {
+
+}
+
+.selector > .selector_value {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.selector > .selector_button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    background-color: #e3edf7;
+        margin: 10px;
+    padding: 0px;
+}
+
+.selector > .selector_button > i {
+    font-size: 30px !important;
+    line-height: 40px !important;
+}
+
+.card_container {
+    width: 100%;
+    height: 280px;
+    padding: 20px;
+}
+
+.creditcard {
+    width: 330px;
+    height: 200px;
+    margin: auto;
+    background: #ff4545;
+    border-radius: 15px;
+    color: #000;
+    box-shadow: 10px 14px 20px #0000004f;
+}
+
+.creditcard > div {
+    height: 25px;
+}
+
+.creditcard > .card_row {
+    padding: 5px 30px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+}
+.creditcard > .card_row.sided {
+    justify-content: flex-start;
+    margin-top: -20px;
+}
+
+.creditcard > .card_brandname {
+    text-transform: uppercase;
+    font-size: 25px;
+    padding: 25px;
+}
+
+.creditcard > .card_brandlogo, .creditcard > .card_netlogo {
+    margin-top: -20px;
+    height: 40px;
+    padding-right: 25px;
+}
+
+.creditcard > .card_brandlogo > i, .creditcard > .card_netlogo > i  {
+    font-size: 36px;
+    text-align: right;
+}
+
+.creditcard > .card_row > .card_ic > i, .creditcard > .card_row > .card_feature > i {
+    font-size: 36px;
+}
+
+.creditcard > .card_row > .card_feature > i {
+    transform: rotateZ(45deg);
+    font-size: 27px;
+}
+
+.creditcard > .card_brandname > .card_feature {
+    margin: -25px;
+    transform: rotateZ(45deg);
+    font-size: 27px;
+}
+
+.creditcard > .card_no {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    font-size: 23px;
+    font-family: Consolas;
+    letter-spacing: 2px;
+}
+
+.creditcard > .card_exp {
+
+}
+
+.creditcard > .card_row > .card_holdername {
+    text-transform: uppercase;
+}
+
+.card_container > #zprime {
+    margin-top: 100px;
+}
+
+.payment_summary_container {
+    height: 160px;
+    width: 310px;
+    margin: auto;
+    padding: 5px;
+    background-color: #e3edf7;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.payment_summary_border {
+    border-radius: 21px;
+    padding: 2px;
+    background: linear-gradient(to bottom right, #f4f8fc, #d6e0ea);
+}
+
+.payment_summary {
+    height: 150px;
+    width: 296px;
+    margin: auto;
+    padding: 20px;
+    background-color: #e3edf7;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; */
+    border-radius: 20px;
+}
+
+.payment_summary_row {
+    height: 40px;
+    padding-top: 15px;
+}
+
+.payment_summary_item {
+    width: 127px;
+    height: 45px;
+    padding: 0px 5px;
+    font-size: 24px !important;
+    line-height: 25px !important;
+    display: inline;
+    vertical-align: text-bottom;
+
+}
+
+.payment_summary_item > i {
+    text-align: left;
+    font-size: 40px !important;
+    line-height: 40px !important;
+    width: calc(100% - 77px);
+    vertical-align: top;
+}
+
+.payment_summary_item:nth-child(even) {
+    text-align: right;
+    font-weight: 900;
+    color: #28354f;
+}
+
+.payment_summary_item:nth-child(odd) {
+    text-align: left;
+    font-weight: 600;
+    color: #7888a2;
+}
