@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta name="theme-color" content="#4682b4" />
+    <title>Unforeseen</title>
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, #canvas {
+  margin: 0;
+  padding: 0;
+  background:#002142;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.moon {
+    height: 170px;
+    width: 170px;
+    border-radius: 50%;
+    background-color: #fefce6;
+    position: absolute;
+    top: 180px;
+    left: 1000px;
+    z-index: 3;
+    box-shadow: 0px 0px 30px 1px #fefce6, 0px 0px 50px 2px #fefce655;
+    /* 0px 0px 114px 85px #fefce654; */
+}
+
+.hill {
+    width: 1200px;
+    height: 900px;
+    background: linear-gradient(to bottom right, #002142, #27435F);
+    transform: rotate(45deg);
+    border-radius: 70px;
+    position: absolute;
+    top: 700px;
+    z-index: 6;
+}
+
+.sea {
+    width: 100vw;
+    height: 27vh;
+/*    background: #fefce605; */
+    background: #95679317;
+    position: absolute;
+    bottom: 0px;
+    z-index: 9;
+    box-shadow: 0px 10px 20px 1px #95679317, 0px 15px 30px 2px #95679317, 0px 30px 40px 3px #95679317, 0px 40px 50px 4px #95679317;
+}
+
+.reflection {
+    height: 170px;
+    width: 170px;
+    border-radius: 50%;
+    background-color: #fefce6;
+    position: absolute;
+    top: 700px;
+    left: 1000px;
+    z-index: 10;
+    transform: rotateX(80deg)
+}
+</style>
+</head>
+<body>
+    <div id="canvas">
+        <div class="moon"></div>
+        <div class="hill"></div>
+        <div class="sea"></div>    
+    </div>
+</body>
+</html>
