@@ -8,8 +8,9 @@ React, Semantic UI, Qrcode.react
 
 ### Demo link
 
+[Github Live Demo](https://alpeshgit.github.io/rupay)
 ```
-[Github Live Demo](https://alpeshgit.github.io/rupay/)
+https://alpeshgit.github.io/rupay
 ```
 ![Screen 1](https://alpeshgit.github.io/rupay/snaps/Snap_1.PNG)
 
