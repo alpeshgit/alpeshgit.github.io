@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>3D Pill</title>
+	<meta name="author" content="Alpesh Patil">
+	<meta name="keywords" content="Design,Alpesh,Pill,3D">
+<style>
+
+body {
+	background: #c4d841;
+}
+
+.pill {
+    position: relative;
+	top: 40vh;
+	left: calc(50vw - 250px);
+	width: 250px;
+    margin: auto;
+    padding: 5px 25px;
+    color: #ffffffbd;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 4em;
+    font-weight: 600;
+    background: linear-gradient(0deg, #28568a 7%, #e7f6fd 89%, #599bb9 100%);
+    border-radius: 20px;
+    box-shadow: 0px 2px 2px 0px #000000b8, 0px 3px 5px 0px #0000003d;
+	float: left;
+	z-index: 3;
+	text-align: right;
+}
+
+.pill:nth-child(2) {
+	left: calc(50vw - 250px - 40px);
+    z-index: 1;
+    background: linear-gradient(0deg, #b3b3b3 -55%, #ffffff 82%, #63a2be 118%);
+    color: #587ea7;
+    padding-left: 50px;
+    width: 150px;
+    box-shadow: 0px 2px 2px 0px #0000004d, 0px 3px 5px 0px #0000003d;
+	text-align: left;
+}
+
+</style>
+</head>
+<body>
+
+<div class="pill">Only</div>
+<div class="pill">You</div>
+
+</body>
