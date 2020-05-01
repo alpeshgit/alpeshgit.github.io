@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <meta name="theme-color" content="#4682b4" />
+    <meta name="author" content="Alpesh Patil">
+    <meta name="description" content="Progress Visualiser Web Graphic">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <title>Progress Ring Design </title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="canvas">
+        <div id="ring1" class="progressRing">
+            <div class="ringContent">
+                <div class="ringContentSubtext">Minutes</div>
+                <div id="ringC1" class="ringContentMaintext"></div>
+            </div>
+        </div>
+        <div id="ring2" class="progressRing">
+            <div class="ringContent">
+                <div class="ringContentSubtext">Seconds</div>
+                <div id="ringC2" class="ringContentMaintext"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        window.onload = function () {
+
+            var startTime = new Date();
+            var difference = new Date() - startTime;
+            var duration = 300 * 1000; // Seconds * 1000
+            var rings = [
+                {
+                    domId: 'ring1',
+                    contentHolder: 'ringC1',
+                    cssvar: '--progress-level-1',
+                    progressLevel: function () {
+
+                        return (difference * 100 / duration)
+                    },
+                    getContent: function () {
+
+                        return Math.floor((duration - difference) / 60000)
+                    }
+                },
+                {
+                    domId: 'ring2',
+                    contentHolder: 'ringC2',
+                    cssvar: '--progress-level-2',
+                    progressLevel: function () {
+
+                        return (60000 - (duration - difference) % 60000) * 100 / 60000
+                    },
+                    getContent: function () {
+
+                        return Math.floor((duration - difference) / 1000) % 60
+                    }
+                }
+            ];
+
+            function animateNext() {
+
+                difference = new Date() - startTime;
+
+                if (difference >= duration)
+                    return;
+
+                for (var i = 0; i < rings.length; i++) {
+
+                    document.documentElement.style.setProperty(rings[i].cssvar, rings[i].progressLevel() + '%');
+                    document.getElementById(rings[i].contentHolder).innerText = rings[i].getContent();
+                }
+
+                requestAnimationFrame(animateNext);
+            }
+
+            for (var i = 0; i < rings.length; i++) {
+
+                document.getElementById(rings[i].domId).style.background = `conic-gradient(#5a2d90 0% var(${rings[i].cssvar}),transparent var(${rings[i].cssvar}) 100%)`;
+            }
+            requestAnimationFrame(animateNext);
+        }
+
+    </script>
+</body>
+
+</html>
