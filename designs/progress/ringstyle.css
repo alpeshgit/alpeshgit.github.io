@@ -5,11 +5,6 @@
 	font-family: 'Segoe UI', Helvetica, sans-serif;
 }
 
-:root {
-	--progress-ring-size: 300px;
-	--progress-ring-width: 15px;
-}
-
 #canvas {
 	position: absolute;
 	display: flex;
@@ -17,16 +12,14 @@
 	justify-content: center;
 	left: 0px;
 	top: 0px;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	padding: 50px;
 	background-color: white;
 }
 
 .progressRing {
 	display: inline-flex;
-	width: var(--progress-ring-size);
-	height: var(--progress-ring-size);
 	margin: 20px;
 	border-radius: 50%;
 	box-shadow: 0px 0px 3px #5a2d90;
@@ -34,12 +27,10 @@
 
 .ringContent {
 	position: relative;
-	left: var(--progress-ring-width);
-	top: var(--progress-ring-width);
-	width: calc(100% - (2 * var(--progress-ring-width)));
-	height: calc(100% - (2 * var(--progress-ring-width)));
-	border-radius: 50%;
-	background: white;
+	display: inline-block;
+	margin-left: -100%;
+	width: 100%;
+	height: 100%;
 	/* animation: warn 4s linear;*/
 	text-align: center;
 	vertical-align: middle;
@@ -47,12 +38,28 @@
 
 .ringContentSubtext {
 	position: relative;
-	top: calc(var(--progress-ring-size) / 5);
-	font-size: calc(var(--progress-ring-size) / 10);
+	top: 20%;
+	width: 100%;
 }
 
 .ringContentMaintext {
 	position: relative;
-	top: calc(var(--progress-ring-size) / 5);
-	font-size: calc(var(--progress-ring-size) / 3);
+	top: 20%;
+	width: 100%;
+}
+
+.progress-ring__circle {
+	transform: rotateZ(-90deg);
+	transform-origin: 50% 50%;
+}
+
+#expire {
+	display: none;
+	width: 100%;
+	height: 100%;
+	flex-basis: 100%;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	font-size: 5.5rem;
 }
