@@ -1,28 +1,19 @@
-<html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <head>
     <meta name="theme-color" content="#4682b4" />
     <meta name="author" content="Alpesh Patil">
     <meta name="description" content="Progress Visualiser Web Graphic">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="keywords" content="HTML, CSS, JavaScript, SVG">
     <title>Progress Ring Design </title>
-    <link href="ringstyle.css" rel="stylesheet" />
+    <link href="ringstyleSVG.css" rel="stylesheet" />
 </head>
 
 <body>
     <div id="canvas">
-        <div id="ring1" class="progressRing">
-            <div class="ringContent">
-                <div class="ringContentSubtext">Minutes</div>
-                <div id="ringC1" class="ringContentMaintext"></div>
-            </div>
-        </div>
-        <div id="ring2" class="progressRing">
-            <div class="ringContent">
-                <div class="ringContentSubtext">Seconds</div>
-                <div id="ringC2" class="ringContentMaintext"></div>
-            </div>
-        </div>
+        <div id="expire">Time Up!</div>
     </div>
     <script type="text/javascript">
 
@@ -30,25 +21,31 @@
 
             var startTime = new Date();
             var difference = new Date() - startTime;
+
+            // Configure here...
             var duration = 300 * 1000; // Seconds * 1000
             var rings = [
                 {
-                    domId: 'ring1',
-                    contentHolder: 'ringC1',
-                    cssvar: '--progress-level-1',
+                    ringColor: '#5a2d90',
+                    ringThickness: '8',
+                    ringSize: '300',
+                    subText: 'Minutes',
                     progressLevel: function () {
 
                         return (difference * 100 / duration)
                     },
                     getContent: function () {
 
-                        return Math.floor((duration - difference) / 60000)
+                        const minute = Math.floor((duration - difference) / 60000);
+                        minute < 2 ? this.subText = 'Minute' : this.subText = 'Minutes'
+                        return minute;
                     }
                 },
                 {
-                    domId: 'ring2',
-                    contentHolder: 'ringC2',
-                    cssvar: '--progress-level-2',
+                    ringColor: '#5a2d90',
+                    ringThickness: '8',
+                    ringSize: '300',
+                    subText: 'Seconds',
                     progressLevel: function () {
 
                         return (60000 - (duration - difference) % 60000) * 100 / 60000
@@ -59,26 +56,87 @@
                     }
                 }
             ];
+            // End of Configuration
 
             function animateNext() {
 
                 difference = new Date() - startTime;
 
-                if (difference >= duration)
+                if (difference >= duration) {
+
+                    for (var i = 0; i < rings.length; i++) {
+
+                        document.querySelector(`#pring${i} > div.ringContent > div.ringContentMaintext`).innerText = '';
+                        document.querySelector(`#pring${i}`).style.display = 'none';
+                        document.querySelector('#expire').style.display = 'inline-flex';
+                    }
                     return;
+                }
 
                 for (var i = 0; i < rings.length; i++) {
 
-                    document.documentElement.style.setProperty(rings[i].cssvar, rings[i].progressLevel() + '%');
-                    document.getElementById(rings[i].contentHolder).innerText = rings[i].getContent();
+                    document.querySelector(`#pring${i} > div.ringContent > div.ringContentSubtext`).innerText = rings[i].subText;
+                    document.querySelector(`#pring${i} > div.ringContent > div.ringContentMaintext`).innerText = rings[i].getContent();
+                    document.documentElement.style.setProperty(`--pring-${i}-level`, rings[i].circumference - rings[i].progressLevel() / 100 * rings[i].circumference);
                 }
 
                 requestAnimationFrame(animateNext);
             }
 
+            const canvas = document.getElementById('canvas');
+            const svgURI = 'http://www.w3.org/2000/svg';
             for (var i = 0; i < rings.length; i++) {
 
-                document.getElementById(rings[i].domId).style.background = `conic-gradient(#5a2d90 0% var(${rings[i].cssvar}),transparent var(${rings[i].cssvar}) 100%)`;
+                //Create DOM elements
+                var ring = document.createElement("DIV");
+                ring.id = 'pring' + i;
+                ring.className = 'progressRing';
+                ring.style.width = ring.style.height = rings[i].ringSize + 'px';
+
+                var ringSVG = document.createElement("DIV");
+                ringSVG.className = 'ringSVG';
+                ring.appendChild(ringSVG);
+
+                var SVG = document.createElementNS(svgURI, "svg");
+                SVG.setAttribute('height', rings[i].ringSize);
+                SVG.setAttribute('width', rings[i].ringSize);
+                ringSVG.appendChild(SVG);
+
+                var svgCircle = document.createElementNS(svgURI, "circle");
+                svgCircle.setAttribute('class', 'progress-ring__circle');
+                svgCircle.setAttribute('stroke', rings[i].ringColor);
+                svgCircle.setAttribute('stroke-width', rings[i].ringThickness);
+                svgCircle.setAttribute('fill', 'transparent');
+                const radius = Math.floor(rings[i].ringSize / 2)
+                svgCircle.setAttribute('cx', radius);
+                svgCircle.setAttribute('cy', radius);
+                svgCircle.setAttribute('r', radius - Math.floor(rings[i].ringThickness / 2));
+
+                rings[i].circumference = rings[i].ringSize * Math.PI;
+                svgCircle.setAttribute('style', `stroke-dashoffset: var(--pring-${i}-level);
+                stroke-dasharray: ${rings[i].circumference} ${rings[i].circumference}`);
+
+                SVG.appendChild(svgCircle);
+
+                document.documentElement.style.setProperty(`--pring-${i}-level`, 0);
+
+                var ringContent = document.createElement("DIV");
+                ringContent.className = 'ringContent';
+                ringContent.style.color = rings[i].ringColor;
+                ring.appendChild(ringContent);
+
+                var ringContentSubtext = document.createElement("DIV");
+                ringContentSubtext.className = 'ringContentSubtext';
+                ringContentSubtext.style.fontSize = rings[i].ringSize / 10 + 'px';
+                ringContentSubtext.innerText = rings[i].subText;
+                ringContent.appendChild(ringContentSubtext);
+
+                var ringContentMaintext = document.createElement("DIV");
+                ringContentMaintext.className = 'ringContentMaintext';
+                ringContentMaintext.style.fontSize = rings[i].ringSize / 3 + 'px';
+                ringContent.appendChild(ringContentMaintext);
+
+                canvas.appendChild(ring);
             }
             requestAnimationFrame(animateNext);
         }
