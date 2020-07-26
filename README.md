@@ -42,3 +42,11 @@ Soothing Fire Ember effect
 ```
 https://alpeshgit.github.io/index.html
 ```
+
+## See my skills
+
+Skillset statistics. A self analysis.
+[Github Live Demo](https://alpeshgit.github.io/skills.html)
+```
+https://alpeshgit.github.io/skills.html
+```
