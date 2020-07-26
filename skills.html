@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Component</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <style>
+        body {
+	background-color: #dddddd;
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#app {
+	margin: auto;
+	padding: calc(min(20px, 1%));
+	display: flex;
+	flex: 1 1 25%;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: start;
+}
+
+.skill {
+	background-color: #f4f6ff;
+	border-radius: 10px;
+	width: 300px;
+	height: auto;
+	min-width: 240px;
+	padding: 20px;
+	margin: 18px;
+	box-shadow: 0px 0px 1px 0px #00000021, 0px 2px 2px 0px #00000021;
+}
+
+.skillTitle {
+	padding-bottom: 5px;
+	font-weight: 700;
+	border-bottom: 1px solid #8a006245;
+	color: #251f44;
+}
+
+.skillItem {
+	margin: 10px;
+}
+
+.progress {
+	background-color: #ddd;
+	border-radius: 15px;
+	width: 100%;
+	height: 17px;
+	margin-top: 5px;
+}
+
+.progress > .progress-bar {
+	border-radius: 15px;
+	height: 15px;
+	padding: 1px 0px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 0.7rem;
+}
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <skill v-for="skill in skills" :skill-title="skill.skillArea" :skillset="skill.skillset" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        
+            Vue.component('skill-item', {
+                template:
+                    `<div class="skillItem">
+            <div>{{skillset.skillName}}</div>
+            <div class="progress">
+                <div class="progress-bar" :style="'width: '+(skillset.skillScore*10)+'%; background-color: '+getBGColor(skillset.skillScore)">{{skillset.skillScore}}%</div>
+            </div>
+        </div>`,
+                props: ['skillset'],
+                methods: {
+                    getBGColor(score) {
+
+                        switch (true) {
+                            case score >= 8:
+                                return '#ffd31d'
+                            case score >= 6:
+                                return '#18b0b0'
+                            case score >= 4:
+                                return '#f37121'
+                        }
+                        return '#d63447'
+                    }
+                }
+            })
+
+            Vue.component('skill', {
+                template:
+                    `<div class="skill">
+            <div class="skillTitle">{{skillTitle}}</div>
+            <skill-item 
+            v-for="skillsetItem in skillset"
+            :skillset="skillsetItem" />
+        </div>`,
+                props: ['skillTitle', 'skillset']
+            })
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    skills: [
+                        {
+                            skillArea: 'Web Development',
+                            skillset: [
+                                {
+                                    skillName: 'HTML',
+                                    skillScore: 9.5
+                                },
+                                {
+                                    skillName: 'CSS',
+                                    skillScore: 8.5
+                                },
+                                {
+                                    skillName: 'Javascript',
+                                    skillScore: 8.5
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Frontend Framework',
+                            skillset: [
+                                {
+                                    skillName: 'Vue.js',
+                                    skillScore: 9
+                                },
+                                {
+                                    skillName: 'Bootstrap',
+                                    skillScore: 9
+                                },
+                                {
+                                    skillName: 'Quasar',
+                                    skillScore: 8.5
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Backend',
+                            skillset: [
+                                {
+                                    skillName: 'NodeJs',
+                                    skillScore: 8.5
+                                },
+                                {
+                                    skillName: 'Java',
+                                    skillScore: 7.5
+                                },
+                                {
+                                    skillName: 'PHP',
+                                    skillScore: 7
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Script',
+                            skillset: [
+                                {
+                                    skillName: 'Bash',
+                                    skillScore: 7
+                                },
+                                {
+                                    skillName: 'Batch',
+                                    skillScore: 7
+                                },
+                                {
+                                    skillName: 'Python',
+                                    skillScore: 5
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Database',
+                            skillset: [
+                                {
+                                    skillName: 'MongoDB',
+                                    skillScore: 8.5
+                                },
+                                {
+                                    skillName: 'MySQL',
+                                    skillScore: 5
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Cloud',
+                            skillset: [
+                                {
+                                    skillName: 'Heroku',
+                                    skillScore: 7
+                                },
+                                {
+                                    skillName: 'Virtualization',
+                                    skillScore: 8
+                                },
+                                {
+                                    skillName: 'Networking',
+                                    skillScore: 6
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Platform',
+                            skillset: [
+                                {
+                                    skillName: 'Salesforce',
+                                    skillScore: 8
+                                },
+                                {
+                                    skillName: 'Wordpress',
+                                    skillScore: 5
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Operating Systems',
+                            skillset: [
+                                {
+                                    skillName: 'Windows',
+                                    skillScore: 8
+                                },
+                                {
+                                    skillName: 'Linux',
+                                    skillScore: 7
+                                },
+                                {
+                                    skillName: 'Android',
+                                    skillScore: 6
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Grahics',
+                            skillset: [
+                                {
+                                    skillName: 'Adobe Photoshop',
+                                    skillScore: 7
+                                },
+                                {
+                                    skillName: '3Ds Max',
+                                    skillScore: 8
+                                },
+                                {
+                                    skillName: 'Paint',
+                                    skillScore: 9
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Applications',
+                            skillset: [
+                                {
+                                    skillName: 'MS Excel',
+                                    skillScore: 8
+                                },
+                                {
+                                    skillName: 'MS Powerpoint',
+                                    skillScore: 7
+                                },
+                                {
+                                    skillName: 'MS Word',
+                                    skillScore: 7
+                                }
+                            ]
+                        },
+                        {
+                            skillArea: 'Tools',
+                            skillset: [
+                                {
+                                    skillName: 'VS Code',
+                                    skillScore: 9
+                                },
+                                {
+                                    skillName: 'Notepad',
+                                    skillScore: 9.5
+                                },
+                                {
+                                    skillName: 'Git',
+                                    skillScore: 6
+                                }
+                            ]
+                        }
+                    ]
+                }
+            })
+    </script>
+</body>
+
+</html>
