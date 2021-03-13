@@ -27,7 +27,7 @@
         <div class="base one"></div>
         <div class="platform one"></div>
         <div class="box"
-            :style="mStarted?'transform: translateX('+Number(Math.cos(armRotation*Math.PI/180)*300-130).toFixed(2)+'px) translateY('+Number(cableLength-240+Math.sin(armRotation*Math.PI/180)*300).toFixed(2)+'px);':''">
+            :style="mStarted?'transform: translateX('+Number(Math.cos(armRotation*Math.PI/180)*300-145).toFixed(2)+'px) translateY('+Number(cableLength-240+Math.sin(armRotation*Math.PI/180)*300).toFixed(2)+'px);':(won?'transform: translateX(115px) translateY(-281px)': '')">
         </div>
         <div class="won" v-if="mWon"></div>
     </div>
