@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Payment</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+    <br />
+    Amount: 4 INR
+    <br />
+    <br />
+    <a href="javascript: onBuyClicked()"><button>Tester</button></a>
+    <br />
+    <br />
+    <div class="message"></div>
+    <br />
+
+    <script>
+
+        function divLog(msg) {
+            document.querySelector('.message').innerText = msg
+        }
+
+        divLog('Trying...')
+        /** Launches payment request flow when user taps on buy button. */
+        function onBuyClicked() {
+            if (!window.PaymentRequest) {
+                console.log('Web payments are not supported in this browser.');
+                divLog('Wpay not supp...');
+                return;
+            }
+
+            const supportedInstruments = [
+                {
+                    supportedMethods: ['https://tez.google.com/pay'],
+                    data: {
+                        pa: '9422376826@ybl',
+                        pn: 'Kestersoft',
+                        tr: 'JAN14',  // your custom transaction reference ID
+                        url: 'http://www.kestersoft.com',
+                        mc: '1234', // your merchant category code
+                        tn: 'Purchase in Merchant',
+                        gstBrkUp: 'GST:16.90|CGST:08.45|SGST:08.45', // GST value break up
+                        invoiceNo: 'BillRef123', // your invoice number
+                        invoiceDate: '2021-03-05T13:21:50+05:30', // your invoice date and time
+                        gstIn: '29ABCDE1234F2Z5', // your GSTIN
+                    },
+                }
+            ];
+
+            const details = {
+                total: {
+                    label: 'Total',
+                    amount: {
+                        currency: 'INR',
+                        value: '4.00', // sample amount
+                    },
+                },
+                displayItems: [{
+                    label: 'Test Payment',
+                    amount: {
+                        currency: 'INR',
+                        value: '4.00',
+                    },
+                }],
+            };
+
+
+            let request = null;
+            try {
+                request = new PaymentRequest(supportedInstruments, details);
+                console.log('Pay Req Created');
+                divLog('pay req created...');
+            } catch (e) {
+                console.log('Payment Request Error: ' + e.message);
+                divLog('pay req err...');
+                return;
+            }
+            if (!request) {
+                console.log('Web payments are not supported in this browser.');
+                return;
+            }
+
+            // Global key for canMakepayment cache.
+            const canMakePaymentCache = 'canMakePaymentCache';
+
+            /**
+             * Check whether can make payment with Google Pay or not. It will check session storage
+             * cache first and use the cache directly if it exists. Otherwise, it will call
+             * canMakePayment method from PaymentRequest object and return the result, the
+             * result will also be stored in the session storage cache for future usage.
+             *
+             * @private
+             * @param {PaymentRequest} request The payment request object.
+             * @return {Promise} a promise containing the result of whether can make payment.
+             */
+            function checkCanMakePayment(request) {
+                divLog('chk can pay...');
+                sessionStorage[canMakePaymentCache] = true
+                /*
+                // Check canMakePayment cache, use cache result directly if it exists.
+                if (sessionStorage.hasOwnProperty(canMakePaymentCache)) {
+                    return Promise.resolve(JSON.parse(sessionStorage[canMakePaymentCache]));
+                }*/
+
+                // If canMakePayment() isn't available, default to assume the method is
+                // supported.
+                var canMakePaymentPromise = Promise.resolve(true);
+
+                // Feature detect canMakePayment().
+                if (request.canMakePayment) {
+                    canMakePaymentPromise = request.canMakePayment();
+                }
+
+                divLog('chk can pay ret...');
+                return canMakePaymentPromise
+                    .then((result) => {
+                        // Store the result in cache for future usage.
+                        //sessionStorage[canMakePaymentCache] = result;
+                        divLog('res can pay');
+                        return result;
+                    })
+                    .catch((err) => {
+                        divLog('err can pay');
+                        console.log('Error calling canMakePayment: ' + err);
+                    });
+            }
+
+            var canMakePaymentPromise = checkCanMakePayment(request);
+            canMakePaymentPromise
+                .then((result) => {
+                    console.log('Yes can make pay');
+                    //                  divLog('!! can pay');
+                    console.log(result);
+                    console.log(request);
+                    showPaymentUI(request, result);
+                })
+                .catch((err) => {
+                    console.log('Error calling checkCanMakePayment: ' + err);
+                    divLog('err cal can pay');
+                });
+
+
+            /**
+            * Show the payment request UI.
+            *
+            * @private
+            * @param {PaymentRequest} request The payment request object.
+            * @param {Promise} canMakePayment The promise for whether can make payment.
+            */
+            function showPaymentUI(request, canMakePayment) {
+                if (!canMakePayment) {
+                    handleNotReadyToPay();
+                    return;
+                }
+
+                // Set payment timeout.
+                let paymentTimeout = window.setTimeout(function () {
+                    window.clearTimeout(paymentTimeout);
+                    request.abort()
+                        .then(function () {
+                            console.log('Payment timed out after 20 minutes.');
+                        })
+                        .catch(function () {
+                            console.log('Unable to abort, user is in the process of paying.');
+                        });
+                }, 20 * 60 * 1000); /* 20 minutes */
+
+                console.log('Sending pay req');
+                request.show()
+                    .then(function (instrument) {
+
+                        console.log('Got pay response');
+                        console.log(instrument);
+                        window.clearTimeout(paymentTimeout);
+                        processResponse(instrument); // Handle response from browser.
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            }
+
+
+            /**
+            * Process the response from browser.
+            *
+            * @private
+            * @param {PaymentResponse} instrument The payment instrument that was authed.
+            */
+            function processResponse(instrument) {
+                var instrumentString = JSON.stringify(instrument);
+                console.log(instrumentString);
+
+                /*
+                fetch('/buy', {
+                    method: 'POST',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: instrumentString,
+                })
+                    .then(function (buyResult) {
+                        if (buyResult.ok) {
+                            return buyResult.json();
+                        }
+                        console.log('Error sending instrument to server.');
+                    })
+                    .then(function (buyResultJson) { */
+                completePayment(instrument, 'success', instrumentString);
+                /*
+            })
+            .catch(function (err) {
+                console.log('Unable to process payment. ' + err);
+            });*/
+            }
+
+            /**
+            * Notify browser that the instrument authorization has completed.
+            *
+            * @private
+            * @param {PaymentResponse} instrument The payment instrument that was authed.
+            * @param {string} result Whether the auth was successful. Should be either
+            * 'success' or 'fail'.
+            * @param {string} msg The message to log in console.
+            */
+            function completePayment(instrument, result, msg) {
+                instrument.complete(result)
+                    .then(function () {
+                        console.log('Payment succeeds.');
+                        console.log(msg);
+                        divLog(msg);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                        divLog(err);
+                    });
+            }
+
+
+            function handleNotReadyToPay() {
+                alert('Google Pay is not ready to pay.');
+            }
+        }
+        divLog('Initialised...')
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/worker.js').then(function (registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
