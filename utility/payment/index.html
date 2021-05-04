@@ -17,12 +17,16 @@
     <br />
     <a href="javascript: onBuyClicked()"><button>Tester</button></a>
     <br />
+    <button onclick="winPay()">WinPay</button>
     <br />
     <div class="message"></div>
     <br />
 
     <script>
-
+        function winPay() {
+            window.open("upi://pay?pa=9422376826@ybl&pn=Kestersoft&Jan445&tn=winpay&am=2.00&cu=INR");
+        }
+        
         function divLog(msg) {
             document.querySelector('.message').innerText = msg
         }
@@ -46,7 +50,6 @@
                         /*mc: '2',
                         url: 'http://www.kestersoft.com',*/
                         tn: 'Test payment',
-                        am: '1.00',
                         cu: 'INR'
                     },
                 }
