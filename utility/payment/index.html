@@ -12,7 +12,7 @@
 
 <body>
     <br />
-    Amount: 4 INR UPI
+    Amount: 1 INR UPI
     <br />
     <br />
     <a href="javascript: onBuyClicked()"><button>Tester</button></a>
@@ -38,18 +38,13 @@
 
             const supportedInstruments = [
                 {
-                    supportedMethods: ['upi://pay'],
+                    supportedMethods: ['https://tez.google.com/pay'],
                     data: {
                         pa: '9422376826@ybl',
                         pn: 'Kestersoft',
                         tr: 'JAN14',  // your custom transaction reference ID
                         url: 'http://www.kestersoft.com',
-                        mc: '1234', // your merchant category code
-                        tn: 'Purchase in Merchant',
-                        gstBrkUp: 'GST:16.90|CGST:08.45|SGST:08.45', // GST value break up
-                        invoiceNo: 'BillRef123', // your invoice number
-                        invoiceDate: '2021-03-05T13:21:50+05:30', // your invoice date and time
-                        gstIn: '29ABCDE1234F2Z5', // your GSTIN
+                        tn: 'Purchase in Merchant'
                     },
                 }
             ];
@@ -59,14 +54,14 @@
                     label: 'Total',
                     amount: {
                         currency: 'INR',
-                        value: '4.00', // sample amount
+                        value: '1.00', // sample amount
                     },
                 },
                 displayItems: [{
                     label: 'Test Payment',
                     amount: {
                         currency: 'INR',
-                        value: '4.00',
+                        value: '1.00',
                     },
                 }],
             };
