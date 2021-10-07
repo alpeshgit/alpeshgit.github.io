@@ -79,7 +79,7 @@
                     `<div class="skillItem">
             <div>{{skillset.skillName}}</div>
             <div class="progress">
-                <div class="progress-bar" :style="'width: '+(skillset.skillScore*10)+'%; background-color: '+getBGColor(skillset.skillScore)">{{skillset.skillScore}}%</div>
+                <div class="progress-bar" :style="'width: '+(skillset.skillScore*10)+'%; background-color: '+getBGColor(skillset.skillScore)">{{skillset.skillScore*10}}%</div>
             </div>
         </div>`,
                 props: ['skillset'],
@@ -135,15 +135,15 @@
                             skillArea: 'Frontend Framework',
                             skillset: [
                                 {
-                                    skillName: 'Vue.js',
+                                    skillName: 'Vue',
+                                    skillScore: 9
+                                },
+                                {
+                                    skillName: 'Tailwind',
                                     skillScore: 9
                                 },
                                 {
                                     skillName: 'Bootstrap',
-                                    skillScore: 9
-                                },
-                                {
-                                    skillName: 'Quasar',
                                     skillScore: 8.5
                                 }
                             ]
@@ -216,6 +216,10 @@
                             skillArea: 'Platform',
                             skillset: [
                                 {
+                                    skillName: 'Kester',
+                                    skillScore: 10
+                                },
+                                {
                                     skillName: 'Salesforce',
                                     skillScore: 8
                                 },
@@ -229,12 +233,12 @@
                             skillArea: 'Operating Systems',
                             skillset: [
                                 {
-                                    skillName: 'Windows',
+                                    skillName: 'Linux',
                                     skillScore: 8
                                 },
                                 {
-                                    skillName: 'Linux',
-                                    skillScore: 7
+                                    skillName: 'Windows',
+                                    skillScore: 7.5
                                 },
                                 {
                                     skillName: 'Android',
@@ -254,7 +258,7 @@
                                     skillScore: 8
                                 },
                                 {
-                                    skillName: 'Paint',
+                                    skillName: 'MS Paint',
                                     skillScore: 9
                                 }
                             ]
@@ -289,7 +293,7 @@
                                 },
                                 {
                                     skillName: 'Git',
-                                    skillScore: 6
+                                    skillScore: 7
                                 }
                             ]
                         }
